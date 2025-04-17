@@ -1,11 +1,14 @@
 "use client"
 
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useDragNDrop } from "@/components/contexts/DragNDrop";
 import styles from "./DagSidebarMenu.module.css";
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 export default function DagSidebarMenu() {
     const [_, setNodeId] = useDragNDrop();
+    const [isOpen, setIsOpen] = useState(true);
 
     const onDragOver = useCallback((e) => {
         e.preventDefault();
@@ -22,21 +25,39 @@ export default function DagSidebarMenu() {
         setNodeId(e.target.id);
         e.dataTransfer.effectAllowed = 'move';
     }, []);
+
+    const toggleOpen = useCallback(() => {
+        setIsOpen(!isOpen);
+        if(isOpen) {
+            document.getElementById('toolbarContainer').classList.add(styles.toolbarContainerShrink);
+            document.getElementById('toolbarHeader').classList.add(styles.toolbarHeaderShrink);
+        }else{
+            document.getElementById('toolbarContainer').classList.remove(styles.toolbarContainerShrink);
+            document.getElementById('toolbarHeader').classList.remove(styles.toolbarHeaderShrink);
+        }
+        
+    }, [isOpen]);
     
     return (
-        <div className={styles.toolbarContainer}>
-            <div style={{width: '100%', textAlign: 'center' }}>
-                <div style={{ fontWeight: '550', paddingBottom: '8px'}}>Building Blocks</div>
+        <div id="toolbarContainer" className={styles.toolbarContainer}>
+            <div id="toolbarHeader" className={styles.toolbarHeader}>
+                <div style={{ fontWeight: '550'}}>Blocks</div>
+                {isOpen &&
+                    <ChevronLeftIcon className={styles.toolbarButtonClose} fontSize="small" onClick= {() => toggleOpen()}/>
+                }
+                {!isOpen &&
+                    <ChevronRightIcon className={styles.toolbarButtonOpen} fontSize="small" onClick= {() => toggleOpen()}/>
+                }
             </div>
             <div className={styles.toolbar}>
-                <div id="transponderNode" onDragStart={(e) => onDragStart(e)} draggable>
-                    Transponder Node
+                <div className={styles.nodes} id="transponderNode" onDragStart={(e) => onDragStart(e)} draggable>
+                    {isOpen ? 'Transponder Node' : 'T N'}
                 </div>
-                <div id="testsuiteNode" onDragStart={(e) => onDragStart(e)} draggable>
-                    Test Suite
+                <div className={styles.nodes} id="testsuiteNode" onDragStart={(e) => onDragStart(e)} draggable>
+                    {isOpen ? 'Test Suite' : 'T S'}
                 </div>
-                <div id="testcode" onDragStart={(e) => onDragStart(e)} draggable>
-                    Test Code
+                <div className={styles.nodes} id="testcode" onDragStart={(e) => onDragStart(e)} draggable>
+                    {isOpen ? 'Test Code' : 'T C'}
                 </div>
             </div>
         </div>

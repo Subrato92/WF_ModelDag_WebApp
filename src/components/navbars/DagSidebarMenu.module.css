@@ -2,12 +2,70 @@
     background-color: var(--border-color);
     padding: 8px 0px; 
     color: white; 
+    width: 250px;
+    margin: 8px;
+    max-height: 100%; 
+    transition: width 0.4s ease-in-out, padding 0.4s ease-in-out;
+}
+
+.toolbarHeader {
+    width: 100%; 
+    text-align: center; 
+    padding: 8px 8px; 
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: center;
+    transition: flex-direction 0.4s ease-in-out;
+}
+
+.nodes {
+    cursor: pointer;
+}
+
+.toolbarHeaderShrink {
+    flex-direction: column-reverse;
+    height: 70px;
+}
+
+.toolbarContainerShrink {
+    width: 75px;
+    padding: 14px 0px;
+}
+
+.toolbarButtonOpen {
+    border-radius: 50%; 
+    background-color: grey; 
+    padding: 2px;
+    animation: rotate_ccw 0.4s ease-in-out;
+}
+
+.toolbarButtonClose {
+    border-radius: 50%; 
+    background-color: grey; 
+    padding: 2px;
+    animation: rotate_cw 0.4s ease-in-out;
+}
+
+@keyframes rotate_cw {
+    0%   {rotate: -180deg;}
+    25%  {rotate: -135deg;}
+    50%  {rotate: -90deg;}
+    75%  {rotate: -45deg;}
+    100% {rotate: 0deg;}
+}
+
+@keyframes rotate_ccw {
+    0%   {rotate: 180deg;}
+    25%  {rotate: 135deg;}
+    50%  {rotate: 90deg;}
+    75%  {rotate: 45deg;}
+    100% {rotate: 0deg;}
 }
 
 .toolbar {
     display: grid; 
     place-items: center;
-    max-height: 100%; 
     overflow-y: scroll;
     width: 100%;
     grid-template-columns: 1fr;

@@ -62,7 +62,7 @@ function Flow() {
     const getId = useCallback(
         () => {
             setNodeCount(nodeCount + 1);
-            return `dndnode_${nodeCount}`;
+            return `node_${nodeCount}`;
         }, 
         [nodeCount]
     );
@@ -143,12 +143,6 @@ function Flow() {
         [nodeType, nodeCount],
     );
 
-    const onDragStart = (event, nodeType) => {
-        setType(nodeType);
-        event.dataTransfer.setData('text/plain', nodeType);
-        event.dataTransfer.effectAllowed = 'move';
-    };
-
     return(
         <div className={styles.grid_container}>
             <div className={styles.header}>
@@ -165,7 +159,6 @@ function Flow() {
                     onConnect={onConnect} 
                     onDrop={onDrop}
                     onDragOver={onDragOver}
-                    //onDragStart={onDragStart}
                     nodeTypes ={nodeTypes}
                     onNodeContextMenu={onNodeContextMenu}
                     style={{ height: '100vh', width:'100vw' }}>
