@@ -1,0 +1,19 @@
+.navBar {
+    width: 100vw;
+    height: 180px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 10px;
+    border-top: 1px solid #b5adad;
+    background-color: #f4f0ed;
+    z-index: 10;
+}
+
+.bottom {
+    padding: 4px;
+    border-radius: 10%;
+    border-color: rgb(255, 255, 255);
+    font-size: 14px;
+    color: black;
+    transition: font-weight 250ms ease-in-out;
+}

@@ -1,0 +1,47 @@
+.navBar {
+    width: 100vw; 
+    height: 60px; 
+    padding-left: 14px;
+    padding-right: 14px; 
+    padding-top: 10px; 
+    border-bottom: 4px solid #ffcd41;
+    background-color: #d71e28;
+    position: fixed; 
+    z-index: 100;
+}
+
+.button {
+    padding: 4px; 
+    border-radius: 16%;
+    border-color: rgb(255, 255, 255); 
+    font-size: 14px; 
+    color: white;
+    transition: font-weight 120ms ease-out, font-size 120ms ease-out;
+}
+
+.button:hover {
+    font-weight: 540; 
+    font-size: 16px;
+    border-bottom: 1px solid #ffcd41; 
+    border-top: 1px solid #ffcd41;
+    cursor: pointer;
+}
+
+.title {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 24px;
+    font-weight: 530;
+    padding-left: 8px;
+    color: #fcfafa;
+}
+
+.title:hover {
+    cursor: pointer;
+}
+
+.user {
+    margin: auto; 
+    font-size: 14px; 
+    color: white;
+}

@@ -1,0 +1,24 @@
+.toolbarContainer { 
+    background-color: var(--border-color);
+    padding: 8px 0px; 
+    color: white; 
+}
+
+.toolbar {
+    display: grid; 
+    place-items: center;
+    max-height: 100%; 
+    overflow-y: scroll;
+    width: 100%;
+    grid-template-columns: 1fr;
+}
+
+.toolbar > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white; 
+    padding: 8px; 
+    margin: 8px auto; 
+    width: 90%;
+}

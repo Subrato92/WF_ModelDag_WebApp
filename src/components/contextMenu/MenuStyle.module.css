@@ -1,0 +1,23 @@
+.context_menu {
+    background: white;
+    border-style: solid;
+    box-shadow: 10px 19px 20px rgba(0, 0, 0, 10%);
+    position: absolute;
+    z-index: 10;
+    padding: 6px;
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: left;
+}
+  
+.context-menu button {
+    border-bottom: 4px grey solid;
+    display: block;
+    padding: 0.5em;
+    text-align: left;
+    width: 100%;
+}
+  
+.context-menu button:hover {
+    background: white;
+}
