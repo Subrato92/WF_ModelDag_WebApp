@@ -21,6 +21,26 @@
 
 .nodes {
     cursor: pointer;
+    padding: 5px;
+}
+
+.tooltip {
+    position: absolute;
+    min-width: 120px;
+    max-width: 240px;
+    background-color: gray;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    visibility: hidden;
+    z-index: 1;
+    text-align: center;
+    white-space: nowrap;
+    transform: translate(75px, 35px);
+}
+
+.nodes:hover + .tooltip {
+    visibility: visible;
 }
 
 .toolbarHeaderShrink {

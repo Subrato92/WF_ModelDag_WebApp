@@ -50,14 +50,23 @@ export default function DagSidebarMenu() {
                 }
             </div>
             <div className={styles.toolbar}>
-                <div className={styles.nodes} id="transponderNode" onDragStart={(e) => onDragStart(e)} draggable>
-                    {isOpen ? 'Transponder Node' : 'T N'}
+                <div>
+                    <div className={styles.nodes} id="transponderNode" onDragStart={(e) => onDragStart(e)} draggable>
+                        {isOpen ? 'Transponder' : 'T'}
+                    </div>
+                    {!isOpen && <span className={styles.tooltip}>Transponder</span>}
                 </div>
-                <div className={styles.nodes} id="testsuiteNode" onDragStart={(e) => onDragStart(e)} draggable>
-                    {isOpen ? 'Test Suite' : 'T S'}
+                <div>
+                    <div className={styles.nodes} id="testsuiteNode" onDragStart={(e) => onDragStart(e)} draggable>
+                        {isOpen ? 'Test Suite' : 'T S'}
+                    </div>
+                    {!isOpen && <span className={styles.tooltip}>Test Suite</span>}
                 </div>
-                <div className={styles.nodes} id="testcode" onDragStart={(e) => onDragStart(e)} draggable>
-                    {isOpen ? 'Test Code' : 'T C'}
+                <div>
+                    <div className={styles.nodes} id="testcode" onDragStart={(e) => onDragStart(e)} draggable>
+                        {isOpen ? 'Test Code' : 'T C'}
+                    </div>
+                    {!isOpen && <span className={styles.tooltip}>Test Code</span>}
                 </div>
             </div>
         </div>
