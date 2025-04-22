@@ -13,6 +13,8 @@ import TestcodeNode from "@/components/blocks/TestcodeNode";
 import CodeBlockNode from "@/components/blocks/CodeBlockNode";
 import Menu from "@/components/contextMenu/Menu";
 
+import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
+
 import { DragNDropProvider, useDragNDrop } from "@/components/contexts/DragNDrop";
 import DagSidebarMenu from "@/components/navbars/DagSidebarMenu";
 
@@ -152,7 +154,10 @@ function Flow() {
     return(
         <div className={styles.grid_container}>
             <div className={styles.header}>
-                PIPELINE COMPOSER
+                <AccountTreeRoundedIcon sx={{fontSize: '24px'}}/>
+                <span style={{marginLeft: '10px'}}>
+                    PIPELINE COMPOSER
+                </span>
             </div>
             <DagSidebarMenu/>
             <div className={styles.canvas}>

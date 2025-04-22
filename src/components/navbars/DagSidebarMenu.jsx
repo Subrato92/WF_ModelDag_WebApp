@@ -10,6 +10,7 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import DescriptionIcon from '@mui/icons-material/Description';
 import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
 import DataObjectIcon from '@mui/icons-material/DataObject';
+import AppsIcon from '@mui/icons-material/Apps';
 
 export default function DagSidebarMenu() {
     const [_, setNodeId] = useDragNDrop();
@@ -46,7 +47,8 @@ export default function DagSidebarMenu() {
     return (
         <div id="toolbarContainer" className={styles.toolbarContainer}>
             <div id="toolbarHeader" className={styles.toolbarHeader}>
-                <div style={{ fontSize: '13px', fontWeight: '550'}}>BLOCKS</div>
+                <AppsIcon sx={{fontSize: '24px'}}/>
+                {isOpen && <div style={{ fontSize: '13px', fontWeight: '550'}}>COMPONENTS</div> }
                 {isOpen &&
                     <ChevronLeftIcon className={styles.toolbarButtonClose} fontSize="small" onClick= {() => toggleOpen()}/>
                 }
