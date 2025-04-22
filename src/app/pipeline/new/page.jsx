@@ -8,6 +8,8 @@ import styles from './PageStyle.module.css';
 import '@xyflow/react/dist/style.css';
 import TransponderNode from '@/components/blocks/TransponderNode';
 import TestsuiteNode from "@/components/blocks/TestsuiteNode";
+import DataNode from "@/components/blocks/DataNode";
+import TestcodeNode from "@/components/blocks/TestcodeNode";
 import Menu from "@/components/contextMenu/Menu";
 
 import { DragNDropProvider, useDragNDrop } from "@/components/contexts/DragNDrop";
@@ -45,7 +47,9 @@ const initialNodes = [];
 
 const nodeTypes = {
     transponderNode: TransponderNode,
-    testsuiteNode: TestsuiteNode
+    testsuiteNode: TestsuiteNode,
+    dataNode: DataNode,
+    testcodeNode: TestcodeNode
 }
 
 function Flow() {
@@ -146,7 +150,7 @@ function Flow() {
     return(
         <div className={styles.grid_container}>
             <div className={styles.header}>
-                MODEL PIPELINE COMPOSER
+                PIPELINE COMPOSER
             </div>
             <DagSidebarMenu/>
             <div className={styles.canvas}>

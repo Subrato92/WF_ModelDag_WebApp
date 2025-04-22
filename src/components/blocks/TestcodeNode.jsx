@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Handle, Position } from '@xyflow/react'; 
 import Style from './ModelNode.module.css';
-import AssessmentIcon from '@mui/icons-material/Assessment';
+import AnalyticsOutlinedIcon from '@mui/icons-material/AnalyticsOutlined';
 
 export default memo(({ data, isConnectable }) => { 
     
@@ -14,10 +14,10 @@ export default memo(({ data, isConnectable }) => {
                 isConnectable={isConnectable}
             />
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '2px'}}>
-                <AssessmentIcon sx={{fontSize: '40px'}}/> 
+                <AnalyticsOutlinedIcon sx={{fontSize: '40px'}}/> 
             </div>
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '14px', fontWeight: 'bold', marginBottom: '5px'}}>
-                Test Suite
+                Test Code
             </div>
             {/*
                 <select className={Style.select} id="model_id" name="cars" style={{width: '100%', border: '1px solid black', padding: '5px', fontSize: '10px'}}>
@@ -26,7 +26,7 @@ export default memo(({ data, isConnectable }) => {
                 </select>
             */}
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '10px', marginBottom: '5px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%'}}>
-                Suite 12321
+                TC 12321
             </div>
             <Handle
                 type="target"

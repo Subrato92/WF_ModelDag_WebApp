@@ -21,7 +21,7 @@
 
 .nodes {
     cursor: pointer;
-    padding: 5px;
+    padding: 0px;
 }
 
 .tooltip {
@@ -49,7 +49,7 @@
 }
 
 .toolbarContainerShrink {
-    width: 75px;
+    width: 70px;
     padding: 14px 0px;
 }
 
@@ -99,4 +99,14 @@
     padding: 8px; 
     margin: 8px auto; 
     width: 90%;
+}
+
+.roundedBorder {
+    border-radius: 35%;
+    padding: 0px; 
+    margin: 8px auto !important;
+    width: 60% !important;
+    font-size: 14px;
+    font-weight: 600 !important;
+    border: 2px solid white !important; 
 }
