@@ -91,7 +91,7 @@
     grid-template-columns: 1fr;
 }
 
-.toolbar > div {
+.item {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,12 +101,14 @@
     width: 90%;
 }
 
-.roundedBorder {
+.roundedItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 35%;
-    padding: 0px; 
-    margin: 8px auto !important;
+    padding: 6px; 
+    margin: 4px auto !important;
     width: 60% !important;
     font-size: 14px;
     font-weight: 600 !important;
-    border: 2px solid white !important; 
 }

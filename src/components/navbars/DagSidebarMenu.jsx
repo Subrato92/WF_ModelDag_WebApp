@@ -57,31 +57,31 @@ export default function DagSidebarMenu() {
                 }
             </div>
             <div className={styles.toolbar}>
-                <div className={!isOpen && styles.roundedBorder} >
+                <div className={isOpen ? styles.item : styles.roundedItem} >
                     <div className={styles.nodes} id="transponderNode" onDragStart={(e) => onDragStart(e)} draggable>
                         <DeveloperBoardIcon sx={{fontSize: '24px', transform: 'rotate(180deg)'}}/> {isOpen && 'Transponder'}
                     </div>
                     {!isOpen && <span className={styles.tooltip}>Transponder</span>}
                 </div>
-                <div className={!isOpen && styles.roundedBorder}>
+                <div className={isOpen ? styles.item : styles.roundedItem}>
                     <div className={styles.nodes} id="dataNode" onDragStart={(e) => onDragStart(e)} draggable>
                         <DescriptionIcon sx={{fontSize: '24px'}}/> {isOpen && 'Data Node'} 
                     </div>
                     {!isOpen && <span className={styles.tooltip}>Data Node</span>}
                 </div>
-                <div className={!isOpen && styles.roundedBorder}>
+                <div className={isOpen ? styles.item : styles.roundedItem}>
                     <div className={styles.nodes} id="testsuiteNode" onDragStart={(e) => onDragStart(e)} draggable>
                         <AssessmentIcon sx={{fontSize: '24px'}}/> {isOpen && 'Test Suite'}
                     </div>
                     {!isOpen && <span className={styles.tooltip}>Test Suite</span>}
                 </div>
-                <div className={!isOpen && styles.roundedBorder}>
+                <div className={isOpen ? styles.item : styles.roundedItem}>
                     <div className={styles.nodes} id="testcodeNode" onDragStart={(e) => onDragStart(e)} draggable>
                         <AnalyticsOutlinedIcon sx={{fontSize: '24px'}}/> {isOpen && 'Test Code'} 
                     </div>
                     {!isOpen && <span className={styles.tooltip}>Test Code</span>}
                 </div>
-                <div className={!isOpen && styles.roundedBorder}>
+                <div className={isOpen ? styles.item : styles.roundedItem}>
                     <div className={styles.nodes} id="codeblockNode" onDragStart={(e) => onDragStart(e)} draggable>
                         <DataObjectIcon sx={{fontSize: '24px'}}/> {isOpen && 'Code Block'} 
                     </div>
