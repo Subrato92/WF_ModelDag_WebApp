@@ -9,6 +9,7 @@ import AnalyticsOutlinedIcon from '@mui/icons-material/AnalyticsOutlined';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import DescriptionIcon from '@mui/icons-material/Description';
 import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
+import DataObjectIcon from '@mui/icons-material/DataObject';
 
 export default function DagSidebarMenu() {
     const [_, setNodeId] = useDragNDrop();
@@ -75,6 +76,12 @@ export default function DagSidebarMenu() {
                 <div className={!isOpen && styles.roundedBorder}>
                     <div className={styles.nodes} id="testcodeNode" onDragStart={(e) => onDragStart(e)} draggable>
                         <AnalyticsOutlinedIcon sx={{fontSize: '24px'}}/> {isOpen && 'Test Code'} 
+                    </div>
+                    {!isOpen && <span className={styles.tooltip}>Test Code</span>}
+                </div>
+                <div className={!isOpen && styles.roundedBorder}>
+                    <div className={styles.nodes} id="codeblockNode" onDragStart={(e) => onDragStart(e)} draggable>
+                        <DataObjectIcon sx={{fontSize: '24px'}}/> {isOpen && 'Code Block'} 
                     </div>
                     {!isOpen && <span className={styles.tooltip}>Test Code</span>}
                 </div>

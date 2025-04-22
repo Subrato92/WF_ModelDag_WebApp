@@ -10,6 +10,7 @@ import TransponderNode from '@/components/blocks/TransponderNode';
 import TestsuiteNode from "@/components/blocks/TestsuiteNode";
 import DataNode from "@/components/blocks/DataNode";
 import TestcodeNode from "@/components/blocks/TestcodeNode";
+import CodeBlockNode from "@/components/blocks/CodeBlockNode";
 import Menu from "@/components/contextMenu/Menu";
 
 import { DragNDropProvider, useDragNDrop } from "@/components/contexts/DragNDrop";
@@ -49,7 +50,8 @@ const nodeTypes = {
     transponderNode: TransponderNode,
     testsuiteNode: TestsuiteNode,
     dataNode: DataNode,
-    testcodeNode: TestcodeNode
+    testcodeNode: TestcodeNode,
+    codeblockNode: CodeBlockNode
 }
 
 function Flow() {
