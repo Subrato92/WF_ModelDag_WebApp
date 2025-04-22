@@ -62,16 +62,16 @@ export default function DagSidebarMenu() {
                     {!isOpen && <span className={styles.tooltip}>Transponder</span>}
                 </div>
                 <div className={!isOpen && styles.roundedBorder}>
+                    <div className={styles.nodes} id="dataNode" onDragStart={(e) => onDragStart(e)} draggable>
+                        <DescriptionIcon sx={{fontSize: '24px'}}/> {isOpen && 'Data Node'} 
+                    </div>
+                    {!isOpen && <span className={styles.tooltip}>Data Node</span>}
+                </div>
+                <div className={!isOpen && styles.roundedBorder}>
                     <div className={styles.nodes} id="testsuiteNode" onDragStart={(e) => onDragStart(e)} draggable>
                         <AssessmentIcon sx={{fontSize: '24px'}}/> {isOpen && 'Test Suite'}
                     </div>
                     {!isOpen && <span className={styles.tooltip}>Test Suite</span>}
-                </div>
-                <div className={!isOpen && styles.roundedBorder}>
-                    <div className={styles.nodes} id="dataNode" onDragStart={(e) => onDragStart(e)} draggable>
-                        <DescriptionIcon sx={{fontSize: '24px'}}/> {isOpen && 'Data Node'} 
-                    </div>
-                    {!isOpen && <span className={styles.tooltip}>Test Code</span>}
                 </div>
                 <div className={!isOpen && styles.roundedBorder}>
                     <div className={styles.nodes} id="testcodeNode" onDragStart={(e) => onDragStart(e)} draggable>
@@ -83,7 +83,7 @@ export default function DagSidebarMenu() {
                     <div className={styles.nodes} id="codeblockNode" onDragStart={(e) => onDragStart(e)} draggable>
                         <DataObjectIcon sx={{fontSize: '24px'}}/> {isOpen && 'Code Block'} 
                     </div>
-                    {!isOpen && <span className={styles.tooltip}>Test Code</span>}
+                    {!isOpen && <span className={styles.tooltip}>Code Block</span>}
                 </div>
             </div>
         </div>
