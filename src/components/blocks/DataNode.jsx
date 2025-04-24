@@ -10,7 +10,7 @@ export default memo(({ data, isConnectable }) => {
             <div style={{ height: '25px'}}>
 
             </div>
-            <div style={{width: '80px', height: '80px', borderRadius: '50%', border: '1px solid black', padding: '10px', backgroundColor: '#f0f0f0', display: 'flex', 
+            <div style={{width: '80px', height: '80px', borderRadius: '50%', border: '1px solid black', padding: '10px', background: 'linear-gradient(111deg,rgba(88, 88, 88, 1) 14%, rgba(48, 48, 48, 1) 51%)', display: 'flex', 
                 flexDirection: 'row', 
                 alignItems: 'center', 
                 justifyContent: 'center'}}>
@@ -21,7 +21,7 @@ export default memo(({ data, isConnectable }) => {
                     isConnectable={isConnectable}
                 />
             
-                <DescriptionIcon sx={{fontSize: '40px', color: '#0099FF'}}/> 
+                <DescriptionIcon sx={{fontSize: '40px', color: '#00CCFF'}}/> 
                 
             </div>
 

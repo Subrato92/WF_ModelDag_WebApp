@@ -16,7 +16,7 @@ export default memo(({ data, isConnectable }) => {
                 borderRadius: '50% 10% 50% 10%', 
                 border: '1px solid black', 
                 padding: '10px', 
-                backgroundColor: '#f0f0f0',
+                background: 'linear-gradient(111deg,rgba(88, 88, 88, 1) 14%, rgba(48, 48, 48, 1) 51%)',
                 display: 'flex', 
                 flexDirection: 'row', 
                 alignItems: 'center', 
@@ -28,7 +28,7 @@ export default memo(({ data, isConnectable }) => {
                     isConnectable={isConnectable}
                 />
                 
-                <DataObjectIcon sx={{fontSize: '40px', color: '#CC0099'}}/> 
+                <DataObjectIcon sx={{fontSize: '40px', color: '#ff5cd6'}}/> 
 
                 <Handle
                     type="target"

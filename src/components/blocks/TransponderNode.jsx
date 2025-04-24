@@ -10,7 +10,10 @@ export default memo(({ data, isConnectable }) => {
             <div style={{ height: '35px'}}>
 
             </div>
-            <div style={{width: '100px', height: '100px', borderRadius: '15%', border: '1px solid #606060', padding: '10px', backgroundColor: '#f0f0f0', display: 'flex', 
+            <div style={{width: '100px', height: '100px', borderRadius: '15%', 
+                border: '1px solid #606060', padding: '10px', 
+                background: 'linear-gradient(111deg,rgba(88, 88, 88, 1) 14%, rgba(48, 48, 48, 1) 51%)', 
+                display: 'flex', 
                 flexDirection: 'row', 
                 alignItems: 'center', 
                 justifyContent: 'center'}}>
@@ -20,7 +23,7 @@ export default memo(({ data, isConnectable }) => {
                     onConnect={(params) => console.log('handle onconnect', params)} 
                     isConnectable={isConnectable}
                 />
-                <DeveloperBoardIcon sx={{fontSize: '60px', color: '#d71e28', transform: 'rotate(180deg)'}}/> 
+                <DeveloperBoardIcon sx={{fontSize: '60px', color: '#dd4048', transform: 'rotate(180deg)'}}/> 
                 <Handle
                     type="target"
                     position={Position.Left} 

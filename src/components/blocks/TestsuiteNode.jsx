@@ -14,7 +14,7 @@ export default memo(({ data, isConnectable }) => {
                 borderRadius: '10% 50% 50% 10%', 
                 border: '1px solid black', 
                 padding: '10px', 
-                backgroundColor: '#f0f0f0', 
+                background: 'linear-gradient(111deg,rgba(88, 88, 88, 1) 14%, rgba(48, 48, 48, 1) 51%)', 
                 display: 'flex', 
                 flexDirection: 'row', 
                 alignItems: 'center', 
@@ -25,7 +25,7 @@ export default memo(({ data, isConnectable }) => {
                     onConnect={(params) => console.log('handle onconnect', params)} 
                     isConnectable={isConnectable}
                 />
-                <AssessmentIcon sx={{fontSize: '40px', color: '#339966'}}/>
+                <AssessmentIcon sx={{fontSize: '40px', color: '#66FF33'}}/>
                 <Handle
                     type="target"
                     position={Position.Left} 

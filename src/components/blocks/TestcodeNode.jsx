@@ -12,7 +12,8 @@ export default memo(({ data, isConnectable }) => {
             </div>
             <div style={{width: '80px', height: '80px', 
                 borderRadius: '50% 50% 50% 10%', 
-                border: '1px solid black', padding: '10px', backgroundColor: '#f0f0f0', display: 'flex', 
+                border: '1px solid black', padding: '10px', 
+                background: 'linear-gradient(111deg,rgba(88, 88, 88, 1) 14%, rgba(48, 48, 48, 1) 51%)', display: 'flex', 
                 flexDirection: 'row', 
                 alignItems: 'center', 
                 justifyContent: 'center'}}>
@@ -23,7 +24,7 @@ export default memo(({ data, isConnectable }) => {
                     onConnect={(params) => console.log('handle onconnect', params)} 
                     isConnectable={isConnectable}
                 />
-                <AnalyticsOutlinedIcon sx={{fontSize: '40px', color: '#339966'}}/> 
+                <AnalyticsOutlinedIcon sx={{fontSize: '40px', color: '#66FF33'}}/> 
                 <Handle
                     type="target"
                     position={Position.Left} 
