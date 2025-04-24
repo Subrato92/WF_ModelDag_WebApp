@@ -204,7 +204,7 @@ function Flow() {
                 }}>
                 <div className={styles.dialogContent}>
                     <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                        <EditIcon sx={{fontSize: '18px', marginRight: '10px'}}/>
+                        <EditIcon sx={{fontSize: '18px', marginRight: '10px', color: '#d71e28'}}/>
                         {selectedNode && selectedNode.type == 'transponderNode' && 'Transponder'}
                         {selectedNode && selectedNode.type == 'testsuiteNode' && 'Testsuite'}
                         {selectedNode && selectedNode.type == 'dataNode' && 'Data'}
@@ -212,24 +212,24 @@ function Flow() {
                         {selectedNode && selectedNode.type == 'codeblockNode' && 'Codeblock'}
                     </div>
                     <div style={{marginTop: '10px', display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                        <button style={{marginLeft: '15px', marginTop: '8px', fontSize: '14px'}}>
+                        <button style={{marginLeft: '15px', marginTop: '8px', fontSize: '14px', paddingBottom: '5px', borderBottom: '2px solid #d71e28'}}>
                             Description
                         </button>
                         <button style={{marginLeft: '15px', marginTop: '8px', fontSize: '14px'}}>
                             Parameters
                         </button>
                     </div>
-                    <div style={{ margin:'5px auto', height: '1px', backgroundColor: 'grey', width: '100%', borderRadius: '5px'}}></div>
+                    <div style={{ margin:'0px auto 5px auto', height: '1px', backgroundColor: 'grey', width: '100%', borderRadius: '5px'}}></div>
                     
                     <div style={{ position: 'fixed', bottom: '5px', width: '95%', display: 'flex', justifyContent: 'flex-end'}}>
-                        <button style={{margin: '10px 10px'}} onClick={() => {
+                        <button style={{margin: '10px 10px', border: '1px solid #d71e28', borderRadius: '5px', padding: '5px 10px', fontSize: '14px'}} onClick={() => {
                             setNodeConfigDialogOpen(false);
                             setSelectedNode(null);
                         }}>
                             Close
                         </button>
 
-                        <button style={{margin: '10px 10px'}} onClick={() => {
+                        <button style={{margin: '10px 10px', backgroundColor: '#d71e28', color: 'white', borderRadius: '5px', padding: '5px 10px', fontSize: '14px'}} onClick={() => {
                             setNodeConfigDialogOpen(false);
                             setSelectedNode(null);
                         }}>
