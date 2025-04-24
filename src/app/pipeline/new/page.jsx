@@ -16,7 +16,7 @@ import Menu from "@/components/contextMenu/Menu";
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
 
 import { DragNDropProvider, useDragNDrop } from "@/components/contexts/DragNDrop";
-
+import BottomNavBar from "@/components/core/BottomBar";
 
 import EditIcon from '@mui/icons-material/Edit';
 
@@ -195,6 +195,7 @@ function Flow() {
                     <Controls/>
                 </ReactFlow>
             </div>
+            <BottomNavBar/>
             <dialog className={styles.nodeConfigDialog} open={nodeConfigDialogOpen} 
                 onClick={(e) => {
                     if (e.target.nodeName === 'DIALOG') {

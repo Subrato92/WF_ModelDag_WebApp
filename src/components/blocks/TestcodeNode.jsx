@@ -6,17 +6,33 @@ import AnalyticsOutlinedIcon from '@mui/icons-material/AnalyticsOutlined';
 export default memo(({ data, isConnectable }) => { 
     
     return ( 
-        <div style={{width: '120px', borderRadius: '50% 50% 50% 10%', border: '1px solid black', padding: '10px', backgroundColor: '#f0f0f0'}}>
-            <Handle
-                type="source"
-                position={Position.Right}
-                onConnect={(params) => console.log('handle onconnect', params)} 
-                isConnectable={isConnectable}
-            />
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '2px'}}>
-                <AnalyticsOutlinedIcon sx={{fontSize: '40px'}}/> 
+        <div>
+            <div style={{ height: '35px'}}>
+
             </div>
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '14px', fontWeight: 'bold', marginBottom: '5px'}}>
+            <div style={{width: '80px', height: '80px', 
+                borderRadius: '50% 50% 50% 10%', 
+                border: '1px solid black', padding: '10px', backgroundColor: '#f0f0f0', display: 'flex', 
+                flexDirection: 'row', 
+                alignItems: 'center', 
+                justifyContent: 'center'}}>
+
+                <Handle
+                    type="source"
+                    position={Position.Right}
+                    onConnect={(params) => console.log('handle onconnect', params)} 
+                    isConnectable={isConnectable}
+                />
+                <AnalyticsOutlinedIcon sx={{fontSize: '40px', color: '#339966'}}/> 
+                <Handle
+                    type="target"
+                    position={Position.Left} 
+                    id="a" 
+                    isConnectable={isConnectable}
+                />
+            </div>
+            
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '14px', fontWeight: 'bold', marginTop: '3px'}}>
                 Test Code
             </div>
             {/*
@@ -28,12 +44,7 @@ export default memo(({ data, isConnectable }) => {
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '10px', marginBottom: '5px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%'}}>
                 TC 12321
             </div>
-            <Handle
-                type="target"
-                position={Position.Left} 
-                id="a" 
-                isConnectable={isConnectable}
-            />
+            
         </div>
     );
 });

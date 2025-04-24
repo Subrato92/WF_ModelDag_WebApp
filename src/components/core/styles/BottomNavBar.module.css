@@ -1,13 +1,15 @@
 .navBar {
-    width: 100vw;
     height: 180px;
     padding-left: 14px;
     padding-right: 14px;
     padding-top: 10px;
     border-top: 1px solid #b5adad;
-    background-color: #f4f0ed;
+    background-color: #606060;
+    color: white;
     z-index: 10;
 }
+
+/*#f4f0ed*/
 
 .bottom {
     padding: 4px;

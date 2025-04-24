@@ -6,7 +6,7 @@ export default function DashboardLayout({children} : {children: React.ReactNode}
     return (
         <ReactFlowProvider>
             <DragNDropProvider>
-                <div style={{display: 'flex', flexDirection: 'row', height: '90vh', width: '100vw', marginBottom: '0px'}}>
+                <div style={{display: 'flex', flexDirection: 'row', width: '100vw', marginBottom: '0px'}}>
                     <DagSidebarMenu/>
                     <div style={{flexGrow: 1}}>
                         {children}

@@ -32,7 +32,6 @@ export default function RootLayout({
         <TopNavBar/>
         <div className="grid grid-cols-1 pt-6">
           {children}
-          <BottomNavBar/>
         </div>
       </body>
     </html>
