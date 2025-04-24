@@ -1,11 +1,11 @@
 .toolbarContainer { 
     background-color: var(--border-color);
-    padding: 8px 0px; 
+    padding-top: 50px; 
     color: white; 
     width: 250px;
-    margin: 8px;
-    max-height: 100%; 
-    transition: width 0.4s ease-in-out, padding 0.4s ease-in-out;
+    max-height: 100vh; 
+    transition: width 0.25s ease-in-out, padding 0.25s ease-in-out;
+    margin-bottom: 0px;
 }
 
 .toolbarHeader {
@@ -28,7 +28,7 @@
     position: absolute;
     min-width: 120px;
     max-width: 240px;
-    background-color: gray;
+    background-color: #d71e28;
     color: white;
     padding: 5px;
     border-radius: 5px;
@@ -44,6 +44,7 @@
 }
 
 .toolbarHeaderShrink {
+    padding-top: 100px; 
     flex-direction: column-reverse;
     height: 70px;
 }
@@ -55,32 +56,35 @@
 
 .toolbarButtonOpen {
     border-radius: 50%; 
-    background-color: grey; 
+    background-color: #d71e28; 
     padding: 2px;
-    animation: rotate_ccw 0.4s ease-in-out;
+    margin-bottom: 10px;
+    transform: rotate(180deg);
+    animation: rotate_ccw 0.4s ease-in-out 0.6s 1 forwards;
 }
 
 .toolbarButtonClose {
     border-radius: 50%; 
-    background-color: grey; 
+    background-color: #d71e28;
     padding: 2px;
-    animation: rotate_cw 0.4s ease-in-out;
+    transform: rotate(-180deg);
+    animation: rotate_cw 0.4s ease-in-out 0.6s 1 forwards;
 }
 
 @keyframes rotate_cw {
-    0%   {rotate: -180deg;}
-    25%  {rotate: -135deg;}
+    0%   {rotate: 0deg;}
+    25%  {rotate: -45deg;}
     50%  {rotate: -90deg;}
-    75%  {rotate: -45deg;}
-    100% {rotate: 0deg;}
+    75%  {rotate: -135deg;}
+    100% {rotate: -180deg;}
 }
 
 @keyframes rotate_ccw {
-    0%   {rotate: 180deg;}
-    25%  {rotate: 135deg;}
+    0%   {rotate: 0deg;}
+    25%  {rotate: 45deg;}
     50%  {rotate: 90deg;}
-    75%  {rotate: 45deg;}
-    100% {rotate: 0deg;}
+    75%  {rotate: 135deg;}
+    100% {rotate: 180deg;}
 }
 
 .toolbar {
@@ -95,7 +99,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid white; 
+    border: 1px solid black; 
     padding: 8px; 
     margin: 8px auto; 
     width: 90%;

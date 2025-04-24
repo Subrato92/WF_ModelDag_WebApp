@@ -16,7 +16,9 @@ import Menu from "@/components/contextMenu/Menu";
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
 
 import { DragNDropProvider, useDragNDrop } from "@/components/contexts/DragNDrop";
-import DagSidebarMenu from "@/components/navbars/DagSidebarMenu";
+
+
+import EditIcon from '@mui/icons-material/Edit';
 
 const initialEdges = [];
 /*
@@ -61,6 +63,8 @@ function Flow() {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const [nodeCount, setNodeCount] = useState(0);
+    const [nodeConfigDialogOpen, setNodeConfigDialogOpen] = useState(false);
+    const [selectedNode, setSelectedNode] = useState(null);
 
     const [menuContext, setMenuContext] = useState(null);
     const { screenToFlowPosition } = useReactFlow();
@@ -151,15 +155,27 @@ function Flow() {
         [nodeType, nodeCount],
     );
 
+    const onNodeClick = useCallback((event, node) => {
+        console.log('node clicked: event: ', event);
+        console.log('node clicked: node: ', node);
+        setNodeConfigDialogOpen(true);
+        var node = {
+            id: node.id,
+            type: node.type,
+            position: node.position,
+            data: node.data
+        }
+        setSelectedNode(node);
+    }, []);
+
     return(
         <div className={styles.grid_container}>
             <div className={styles.header}>
-                <AccountTreeRoundedIcon sx={{fontSize: '24px'}}/>
-                <span style={{marginLeft: '10px'}}>
+                <AccountTreeRoundedIcon sx={{fontSize: '24px', color: '#d71e28'}}/>
+                <span style={{marginLeft: '10px', fontSize: '16px'}}>
                     PIPELINE COMPOSER
                 </span>
             </div>
-            <DagSidebarMenu/>
             <div className={styles.canvas}>
                 <ReactFlow
                     ref={ref}
@@ -172,22 +188,63 @@ function Flow() {
                     onDragOver={onDragOver}
                     nodeTypes ={nodeTypes}
                     onNodeContextMenu={onNodeContextMenu}
+                    onNodeClick={onNodeClick}
                     style={{ height: '100vh', width:'100vw' }}>
                     <Background />
                     {menuContext && <Menu onClick={onPaneClick} {...menuContext} />}
                     <Controls/>
                 </ReactFlow>
             </div>
+            <dialog className={styles.nodeConfigDialog} open={nodeConfigDialogOpen} 
+                onClick={(e) => {
+                    if (e.target.nodeName === 'DIALOG') {
+                        setNodeConfigDialogOpen(false);
+                        setSelectedNode(null);
+                    }
+                }}>
+                <div className={styles.dialogContent}>
+                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                        <EditIcon sx={{fontSize: '18px', marginRight: '10px'}}/>
+                        {selectedNode && selectedNode.type == 'transponderNode' && 'Transponder'}
+                        {selectedNode && selectedNode.type == 'testsuiteNode' && 'Testsuite'}
+                        {selectedNode && selectedNode.type == 'dataNode' && 'Data'}
+                        {selectedNode && selectedNode.type == 'testcodeNode' && 'Testcode'}
+                        {selectedNode && selectedNode.type == 'codeblockNode' && 'Codeblock'}
+                    </div>
+                    <div style={{marginTop: '10px', display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                        <button style={{marginLeft: '15px', marginTop: '8px', fontSize: '14px'}}>
+                            Description
+                        </button>
+                        <button style={{marginLeft: '15px', marginTop: '8px', fontSize: '14px'}}>
+                            Parameters
+                        </button>
+                    </div>
+                    <div style={{ margin:'5px auto', height: '1px', backgroundColor: 'grey', width: '100%', borderRadius: '5px'}}></div>
+                    
+                    <div style={{ position: 'fixed', bottom: '5px', width: '95%', display: 'flex', justifyContent: 'flex-end'}}>
+                        <button style={{margin: '10px 10px'}} onClick={() => {
+                            setNodeConfigDialogOpen(false);
+                            setSelectedNode(null);
+                        }}>
+                            Close
+                        </button>
+
+                        <button style={{margin: '10px 10px'}} onClick={() => {
+                            setNodeConfigDialogOpen(false);
+                            setSelectedNode(null);
+                        }}>
+                            Update
+                        </button>
+
+                    </div>
+                </div>
+            </dialog>
         </div>
     );
 }
 
 export default function FlowComponent (){
     return (
-        <ReactFlowProvider>
-            <DragNDropProvider>
-                <Flow/>
-            </DragNDropProvider>
-        </ReactFlowProvider>
+        <Flow/>
     )
 }

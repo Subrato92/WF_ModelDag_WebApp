@@ -50,40 +50,40 @@ export default function DagSidebarMenu() {
                 <AppsIcon sx={{fontSize: '24px'}}/>
                 {isOpen && <div style={{ fontSize: '13px', fontWeight: '550'}}>COMPONENTS</div> }
                 {isOpen &&
-                    <ChevronLeftIcon className={styles.toolbarButtonClose} fontSize="small" onClick= {() => toggleOpen()}/>
+                    <ChevronLeftIcon className={styles.toolbarButtonClose} fontSize="medium" onClick= {() => toggleOpen()}/>
                 }
                 {!isOpen &&
-                    <ChevronRightIcon className={styles.toolbarButtonOpen} fontSize="small" onClick= {() => toggleOpen()}/>
+                    <ChevronRightIcon className={styles.toolbarButtonOpen} fontSize="medium" onClick= {() => toggleOpen()}/>
                 }
             </div>
             <div className={styles.toolbar}>
                 <div className={isOpen ? styles.item : styles.roundedItem} >
                     <div className={styles.nodes} id="transponderNode" onDragStart={(e) => onDragStart(e)} draggable>
-                        <DeveloperBoardIcon sx={{fontSize: '24px', transform: 'rotate(180deg)'}}/> {isOpen && 'Transponder'}
+                        <DeveloperBoardIcon sx={{fontSize: '24px', transform: 'rotate(180deg)', color: 'black'}}/> {isOpen && 'Transponder'}
                     </div>
                     {!isOpen && <span className={styles.tooltip}>Transponder</span>}
                 </div>
                 <div className={isOpen ? styles.item : styles.roundedItem}>
                     <div className={styles.nodes} id="dataNode" onDragStart={(e) => onDragStart(e)} draggable>
-                        <DescriptionIcon sx={{fontSize: '24px'}}/> {isOpen && 'Data Node'} 
+                        <DescriptionIcon sx={{fontSize: '24px', color: 'black'}}/> {isOpen && 'Data Node'} 
                     </div>
                     {!isOpen && <span className={styles.tooltip}>Data Node</span>}
                 </div>
                 <div className={isOpen ? styles.item : styles.roundedItem}>
                     <div className={styles.nodes} id="testsuiteNode" onDragStart={(e) => onDragStart(e)} draggable>
-                        <AssessmentIcon sx={{fontSize: '24px'}}/> {isOpen && 'Test Suite'}
+                        <AssessmentIcon sx={{fontSize: '24px', color: 'black'}}/> {isOpen && 'Test Suite'}
                     </div>
                     {!isOpen && <span className={styles.tooltip}>Test Suite</span>}
                 </div>
                 <div className={isOpen ? styles.item : styles.roundedItem}>
                     <div className={styles.nodes} id="testcodeNode" onDragStart={(e) => onDragStart(e)} draggable>
-                        <AnalyticsOutlinedIcon sx={{fontSize: '24px'}}/> {isOpen && 'Test Code'} 
+                        <AnalyticsOutlinedIcon sx={{fontSize: '24px', color: 'black'}}/> {isOpen && 'Test Code'} 
                     </div>
                     {!isOpen && <span className={styles.tooltip}>Test Code</span>}
                 </div>
                 <div className={isOpen ? styles.item : styles.roundedItem}>
                     <div className={styles.nodes} id="codeblockNode" onDragStart={(e) => onDragStart(e)} draggable>
-                        <DataObjectIcon sx={{fontSize: '24px'}}/> {isOpen && 'Code Block'} 
+                        <DataObjectIcon sx={{fontSize: '24px', color: 'black'}}/> {isOpen && 'Code Block'} 
                     </div>
                     {!isOpen && <span className={styles.tooltip}>Code Block</span>}
                 </div>

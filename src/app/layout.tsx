@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <TopNavBar/>
-        <div className="grid grid-cols-1 gap-4 pt-6">
+        <div className="grid grid-cols-1 pt-6">
           {children}
           <BottomNavBar/>
         </div>

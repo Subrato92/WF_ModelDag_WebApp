@@ -6,7 +6,7 @@ import AnalyticsOutlinedIcon from '@mui/icons-material/AnalyticsOutlined';
 export default memo(({ data, isConnectable }) => { 
     
     return ( 
-        <div style={{width: '120px', borderRadius: '10% 50% 50% 10%', border: '1px solid black', padding: '10px', backgroundColor: '#f0f0f0'}}>
+        <div style={{width: '120px', borderRadius: '50% 50% 50% 10%', border: '1px solid black', padding: '10px', backgroundColor: '#f0f0f0'}}>
             <Handle
                 type="source"
                 position={Position.Right}

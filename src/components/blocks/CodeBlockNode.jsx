@@ -3,6 +3,8 @@ import { Handle, Position } from '@xyflow/react';
 import Style from './ModelNode.module.css';
 import DataObjectIcon from '@mui/icons-material/DataObject';
 
+//192.168.68.105
+
 export default memo(({ data, isConnectable }) => { 
     
     return ( 
