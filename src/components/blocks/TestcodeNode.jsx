@@ -1,22 +1,29 @@
 import React, { memo } from 'react';
 import { Handle, Position } from '@xyflow/react'; 
-import Style from './ModelNode.module.css';
+import Style from './Node.module.css';
 import AnalyticsOutlinedIcon from '@mui/icons-material/AnalyticsOutlined';
+import { useDragNDrop } from '@/components/contexts/DragNDrop';
 
 export default memo(({ data, isConnectable }) => { 
+
+    const state = useDragNDrop();
+    let theme = state[2];
+    console.log(theme);
+
+    let styleClass = Style.container_light;
+    let iconStyleClass = Style.testcode_icon_light;
+
+    if (theme != "LIGHT") {
+        styleClass = Style.container_dark;
+        iconStyleClass = Style.testcode_icon_dark;
+    }
     
     return ( 
         <div>
             <div style={{ height: '35px'}}>
 
             </div>
-            <div style={{width: '80px', height: '80px', 
-                borderRadius: '50% 50% 50% 10%', 
-                border: '1px solid black', padding: '10px', 
-                background: 'linear-gradient(111deg,rgba(88, 88, 88, 1) 14%, rgba(48, 48, 48, 1) 51%)', display: 'flex', 
-                flexDirection: 'row', 
-                alignItems: 'center', 
-                justifyContent: 'center'}}>
+            <div className={styleClass} style={{width: '80px', height: '80px', borderRadius: '50% 50% 50% 10%'}}>
 
                 <Handle
                     type="source"
@@ -24,7 +31,7 @@ export default memo(({ data, isConnectable }) => {
                     onConnect={(params) => console.log('handle onconnect', params)} 
                     isConnectable={isConnectable}
                 />
-                <AnalyticsOutlinedIcon sx={{fontSize: '40px', color: '#66FF33'}}/> 
+                <AnalyticsOutlinedIcon className={iconStyleClass} sx={{fontSize: '40px'}}/> 
                 <Handle
                     type="target"
                     position={Position.Left} 

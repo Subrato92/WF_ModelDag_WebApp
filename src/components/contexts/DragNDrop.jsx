@@ -9,9 +9,10 @@ export const useDragNDrop = () => {
 
 export const DragNDropProvider = ({children}) => {
     const [nodeType, setNodeType] = useState(null);
+    const [theme, setTheme] = useState("LIGHTx");
     
     return (
-        <DragNDropContext.Provider value={[nodeType, setNodeType]}>
+        <DragNDropContext.Provider value={[nodeType, setNodeType, theme, setTheme]}>
             {children}
         </DragNDropContext.Provider>
     )
