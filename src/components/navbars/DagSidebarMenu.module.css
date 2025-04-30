@@ -1,15 +1,15 @@
 .toolbarContainer { 
-    background-color: #d71e28;
+    background-color: var(--secondary);
     padding-top: 50px; 
-    color: white; 
+    color: black; 
     width: 250px;
     height: 100%; 
     transition: width 0.25s ease-in-out, padding 0.25s ease-in-out;
     margin-bottom: 0px;
     z-index: 10;
-    box-shadow: 10px 13px 13px -5px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 10px 13px 13px -5px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 13px 13px -5px rgba(0,0,0,0.75);
+    box-shadow: 3px 1px 11px 0px rgba(0,0,0,0.58);
+    -webkit-box-shadow: 3px 1px 11px 0px rgba(0,0,0,0.58);
+    -moz-box-shadow: 3px 1px 11px 0px rgba(0,0,0,0.58);
 }
 
 .toolbarHeader {
@@ -60,8 +60,8 @@
 
 .toolbarButtonOpen {
     border-radius: 50%; 
-    background-color: #ffcd41; 
-    color: #d71e28;
+    background-color: var(--wf-red); 
+    color: var(--wf-yellow);
     padding: 2px;
     margin-bottom: 10px;
     transform: rotate(180deg);
@@ -70,8 +70,8 @@
 
 .toolbarButtonClose {
     border-radius: 50%; 
-    background-color: #ffcd41;
-    color: #d71e28;
+    background-color: var(--wf-red); 
+    color: var(--wf-yellow);
     padding: 2px;
     transform: rotate(-180deg);
     animation: rotate_cw 0.4s ease-in-out 0.6s 1 forwards;
@@ -108,8 +108,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #d71e28;
-    border: 2px solid #ffcd41; 
+    background-color: var(--secondary);
+    border: 2px solid var(--foreground); 
     padding: 8px; 
     margin: 8px auto; 
     width: 90%;

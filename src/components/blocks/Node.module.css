@@ -21,7 +21,7 @@
 .container_light {
     border: 1px solid black;
     padding: 10px;
-    background: linear-gradient(14deg,rgba(181, 181, 181, 1) 0%, rgba(156, 154, 154, 1) 27%, rgba(255, 255, 255, 1) 88%);
+    background: whitesmoke;
     display: flex;
     flex-direction: row;
     align-items: center; 

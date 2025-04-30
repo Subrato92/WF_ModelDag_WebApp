@@ -4,8 +4,8 @@
     padding-right: 14px;
     padding-top: 10px;
     border-top: 1px solid #b5adad;
-    background-color: #606060;
-    color: white;
+    background-color: var(--secondary);
+    color: black;
     z-index: 0;
 }
 
