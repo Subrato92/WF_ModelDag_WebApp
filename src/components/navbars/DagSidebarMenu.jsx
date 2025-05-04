@@ -10,9 +10,13 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import DescriptionIcon from '@mui/icons-material/Description';
 import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
 import DataObjectIcon from '@mui/icons-material/DataObject';
+import BookmarkSharpIcon from '@mui/icons-material/BookmarkSharp';
+import CloseSharpIcon from '@mui/icons-material/CloseSharp';
 import AppsIcon from '@mui/icons-material/Apps';
+import { useRouter } from 'next/navigation';
 
 export default function DagSidebarMenu() {
+    const router = useRouter();
     const [_, setNodeId] = useDragNDrop();
     const [isOpen, setIsOpen] = useState(true);
 
@@ -43,6 +47,14 @@ export default function DagSidebarMenu() {
         }
         
     }, [isOpen]);
+
+    const onCreate = useCallback(() => {
+
+    }, [])
+
+    const onCancel = useCallback(() => {
+        router.push('/pipeline')
+    }, [])
     
     return (
         <div id="toolbarContainer" className={styles.toolbarContainer}>
@@ -86,6 +98,19 @@ export default function DagSidebarMenu() {
                         <DataObjectIcon sx={{fontSize: '24px'}}/> {isOpen && 'Code Block'} 
                     </div>
                     {!isOpen && <span className={styles.tooltip}>Code Block</span>}
+                </div>
+                <div style={{ width: '100%', height: "250px", borderBottom: '1px solid grey', marginBottom: '10px' }}></div>
+                <div className={isOpen ? styles.item : styles.roundedItem} onClick={onCreate}>
+                    <div className={styles.nodes} id="create">
+                        <BookmarkSharpIcon sx={{fontSize: '24px'}}/> {isOpen && 'Create'} 
+                    </div>
+                    {!isOpen && <span className={styles.tooltip}>Create</span>}
+                </div>
+                <div className={isOpen ? styles.item : styles.roundedItem} onClick={onCancel}>
+                    <div className={styles.nodes} id="cancel" >
+                        <CloseSharpIcon sx={{fontSize: '24px'}}/> {isOpen && 'Cancel'} 
+                    </div>
+                    {!isOpen && <span className={styles.tooltip}>Cancel</span>}
                 </div>
             </div>
         </div>

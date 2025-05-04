@@ -12,7 +12,7 @@ export default function Pipelines() {
     const router = useRouter();
 
     var headers = [
-        { name:'Name', id: '1'},
+        { name:'Id', id: '1'},
         { name:'Description', id: '2'},
         { name:'Task Id', id: '3'},
         { name:'Owner', id: '4'},
@@ -21,9 +21,9 @@ export default function Pipelines() {
     ]
 
     var rows = [
-        {'1':'Sum1', '2':'$180', '3':'11513','4':'Sum1', '5':'zby', '6':'123'},
-        {'1':'Sum2', '2':'$180', '3':'11513','4':'Sum2', '5':'zby', '6':'123'},
-        {'1':'Sum3', '2':'$180', '3':'11513','4':'Sum31', '5':'zby', '6':'123'}
+        {'1':'1', '2':'Pipeline for task 11513', '3':'11513','4':'Subrato Mondal', '5':'3rd May 2025', '6':'123'},
+        {'1':'2', '2':'Pipeline for task 11514', '3':'11514','4':'Subrato Mondal', '5':'3rd May 2025', '6':'123'},
+        {'1':'3', '2':'Pipeline for task 11515', '3':'11515','4':'Subrato Mondal', '5':'3rd May 2025', '6':'123'}
     ]
 
     const onView = (pipeline) => {

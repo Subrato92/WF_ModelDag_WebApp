@@ -12,6 +12,7 @@ import DataNode from "@/components/blocks/DataNode";
 import TestcodeNode from "@/components/blocks/TestcodeNode";
 import CodeBlockNode from "@/components/blocks/CodeBlockNode";
 import Menu from "@/components/contextMenu/Menu";
+import { useRouter } from 'next/navigation';
 
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
 
@@ -22,33 +23,6 @@ import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlin
 import Dialog from "../../../components/configuration/dialog";
 
 const initialEdges = [];
-/*
-    {
-        id: '2',
-        type: 'testsuiteNode', 
-        data: { label: 'Test Code' }, 
-        position: { x: 350, y: 350 },
-        isConnectable: true
-    },
-    {
-        id: '4', 
-        type: 'transponderNode', 
-        data: { label: "Model Node" },
-        position: { x: 200, y: 200 },
-        isConnectable: true
-    },
-    {
-        id: '3',
-        data: { label: 'Data Node' }, 
-        position: { x: 100, y: 100 },
-    },
-    {
-        id: '5',
-        data: { label: 'Another Test Code' },
-        position: { x: 450, y: 450 },
-    }
-
-*/
 const initialNodes = [];
 
 const nodeTypes = {
@@ -60,6 +34,7 @@ const nodeTypes = {
 }
 
 function Flow() {
+    const router = useRouter();
 
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -169,11 +144,6 @@ function Flow() {
         setSelectedNode(node);
     }, []);
 
-    const onCreate = useCallback(() => {
-        console.log('nodes: ', nodes);
-        console.log('edges: ', edges);
-    }, [nodes, edges])
-
     const onDialogClose = useCallback(() => {
         setNodeConfigDialogOpen(false);
         setSelectedNode(null);
@@ -191,11 +161,6 @@ function Flow() {
                 <span style={{marginLeft: '10px', fontSize: '16px'}}>
                     PIPELINE COMPOSER
                 </span>
-                <div style={{flex: '1 1 30%'}}></div>
-                <button className={styles.button_save} onClick={onCreate}>
-                    <BookmarkBorderOutlinedIcon/>
-                    Create
-                </button>
             </div>
             <div className={styles.canvas}>
                 <ReactFlow
