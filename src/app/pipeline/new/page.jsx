@@ -18,7 +18,8 @@ import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
 import { DragNDropProvider, useDragNDrop } from "@/components/contexts/DragNDrop";
 import BottomNavBar from "@/components/core/BottomBar";
 
-import EditIcon from '@mui/icons-material/Edit';
+import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import Dialog from "../../../components/configuration/dialog";
 
 const initialEdges = [];
 /*
@@ -168,6 +169,21 @@ function Flow() {
         setSelectedNode(node);
     }, []);
 
+    const onCreate = useCallback(() => {
+        console.log('nodes: ', nodes);
+        console.log('edges: ', edges);
+    }, [nodes, edges])
+
+    const onDialogClose = useCallback(() => {
+        setNodeConfigDialogOpen(false);
+        setSelectedNode(null);
+    }, [setNodeConfigDialogOpen, setSelectedNode])
+
+    const onConfigUpdate = useCallback(() => {
+        setNodeConfigDialogOpen(false);
+        setSelectedNode(null);
+    }, [setNodeConfigDialogOpen, setSelectedNode])
+
     return(
         <div className={styles.grid_container}>
             <div className={styles.header}>
@@ -175,6 +191,11 @@ function Flow() {
                 <span style={{marginLeft: '10px', fontSize: '16px'}}>
                     PIPELINE COMPOSER
                 </span>
+                <div style={{flex: '1 1 30%'}}></div>
+                <button className={styles.button_save} onClick={onCreate}>
+                    <BookmarkBorderOutlinedIcon/>
+                    Create
+                </button>
             </div>
             <div className={styles.canvas}>
                 <ReactFlow
@@ -196,50 +217,7 @@ function Flow() {
                 </ReactFlow>
             </div>
             <BottomNavBar/>
-            <dialog className={styles.nodeConfigDialog} open={nodeConfigDialogOpen} 
-                onClick={(e) => {
-                    if (e.target.nodeName === 'DIALOG') {
-                        setNodeConfigDialogOpen(false);
-                        setSelectedNode(null);
-                    }
-                }}>
-                <div className={styles.dialogContent}>
-                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                        <EditIcon sx={{fontSize: '18px', marginRight: '10px', color: '#d71e28'}}/>
-                        {selectedNode && selectedNode.type == 'transponderNode' && 'Transponder'}
-                        {selectedNode && selectedNode.type == 'testsuiteNode' && 'Testsuite'}
-                        {selectedNode && selectedNode.type == 'dataNode' && 'Data'}
-                        {selectedNode && selectedNode.type == 'testcodeNode' && 'Testcode'}
-                        {selectedNode && selectedNode.type == 'codeblockNode' && 'Codeblock'}
-                    </div>
-                    <div style={{marginTop: '10px', display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                        <button style={{marginLeft: '15px', marginTop: '8px', fontSize: '14px', paddingBottom: '5px', borderBottom: '2px solid #d71e28'}}>
-                            Description
-                        </button>
-                        <button style={{marginLeft: '15px', marginTop: '8px', fontSize: '14px'}}>
-                            Parameters
-                        </button>
-                    </div>
-                    <div style={{ margin:'0px auto 5px auto', height: '1px', backgroundColor: 'grey', width: '100%', borderRadius: '5px'}}></div>
-                    
-                    <div style={{ position: 'fixed', bottom: '5px', width: '95%', display: 'flex', justifyContent: 'flex-end'}}>
-                        <button style={{margin: '10px 10px', border: '1px solid #d71e28', borderRadius: '5px', padding: '5px 10px', fontSize: '14px'}} onClick={() => {
-                            setNodeConfigDialogOpen(false);
-                            setSelectedNode(null);
-                        }}>
-                            Close
-                        </button>
-
-                        <button style={{margin: '10px 10px', backgroundColor: '#d71e28', color: 'white', borderRadius: '5px', padding: '5px 10px', fontSize: '14px'}} onClick={() => {
-                            setNodeConfigDialogOpen(false);
-                            setSelectedNode(null);
-                        }}>
-                            Update
-                        </button>
-
-                    </div>
-                </div>
-            </dialog>
+            <Dialog isOpen={nodeConfigDialogOpen} selectedNode={selectedNode} onClose={onDialogClose} onUpdate={onConfigUpdate}/>
         </div>
     );
 }

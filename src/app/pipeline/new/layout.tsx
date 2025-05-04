@@ -1,8 +1,7 @@
 import DagSidebarMenu from "@/components/navbars/DagSidebarMenu";
 import { ReactFlowProvider } from "@xyflow/react";
 import { DragNDropProvider } from "@/components/contexts/DragNDrop";
-
-export default function DashboardLayout({children} : {children: React.ReactNode}) {
+export default function NewPipelineLayout({children} : {children: React.ReactNode}) {
     return (
         <ReactFlowProvider>
             <DragNDropProvider>

@@ -1,0 +1,84 @@
+:root {
+    --base-spacing-unit: 24px;
+    --half-spacing-unit: 12px;
+    --color-alpha: #1772FF;
+    --color-form-highlight: #EEEEEE;
+}
+
+/*
+    ref: https://codepen.io/nathancockerill/pen/OQyXWb
+*/
+
+.table_header, .table_footer {
+	display:flex;
+	width:100%;
+	background: var(--secondary);
+	padding:calc(var(--half-spacing-unit) * 1.5) 0px;
+}
+
+.table_header {
+    border-bottom: 2px solid var(--background);
+}
+
+.table_footer {
+    border-top: 2px solid var(--background);
+}
+
+.table_row {
+	display:flex;
+	width:100%;
+	padding:calc(var(--half-spacing-unit) * 1.5) 0px;
+}
+
+.table_row:nth-of-type(odd) {
+    background: var(--color-form-highlight);
+}
+
+.table_data, .header__item {
+	flex: 1 1 20%;
+	text-align:center;
+}
+
+.header__item {
+	text-transform:uppercase;
+    color: black;
+	text-decoration: none;
+	position:relative;
+	display:inline-block;
+	padding-left: var(--base-spacing-unit);
+	padding-right: var(--base-spacing-unit);
+}
+
+.container {
+	max-width: 90%;
+	margin-right:auto;
+	margin-left:auto;
+	display:flex;
+    flex-direction: column;
+	justify-content:center;
+    min-height: 65vh;
+	max-height:80vh;
+}
+
+.table {
+	width:100%;
+	border:1px solid var(--color-form-highlight);
+    flex: 1 0 80%
+}
+
+.table_footer {
+    position: relative;
+    bottom: 0px;
+    flex-direction: row-reverse;
+    color: black;
+}
+
+.footer__item {
+    flex: 0 0 15%;
+    color: black;
+}
+
+.action_item:hover {
+    color: var(--wf-red);
+    cursor: pointer;
+}
