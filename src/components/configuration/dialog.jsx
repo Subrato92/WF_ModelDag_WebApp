@@ -25,47 +25,58 @@ export default function Dialog({isOpen, selectedNode, onClose, onUpdate}){
                 }
             }}>
             <div className={styles.dialogContent}>
-                <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                    <EditIcon sx={{fontSize: '18px', marginRight: '10px', color: '#d71e28'}}/>
-                    {selectedNode && selectedNode.type == 'transponderNode' && 'Transponder'}
-                    {selectedNode && selectedNode.type == 'testsuiteNode' && 'Testsuite'}
-                    {selectedNode && selectedNode.type == 'dataNode' && 'Data'}
-                    {selectedNode && selectedNode.type == 'testcodeNode' && 'Testcode'}
-                    {selectedNode && selectedNode.type == 'codeblockNode' && 'Codeblock'}
+                <div className={styles.dialogItem}>
+                    Input
                 </div>
-                <div style={{marginTop: '10px', display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                    <button className={styles.tab} style={selectedTab=="Parameters"? selected_tab_style: {}} onClick={()=>setSelectedtab("Parameters")}>
-                        Parameters
-                    </button>
-                    <button className={styles.tab} style={selectedTab=="Description"? selected_tab_style: {}} onClick={()=>setSelectedtab("Description")}>
-                        Description
-                    </button>
+                <div className={styles.dialogItem} style={{flex: '1 1 200px'}}>
+                    
                 </div>
-                <div style={{ margin:'0px auto 5px auto', height: '1px', backgroundColor: 'grey', width: '100%', borderRadius: '5px'}}></div>
+                <div className={styles.dialogSectionConfigure}>
+                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                        <EditIcon sx={{fontSize: '18px', marginRight: '10px', color: '#d71e28'}}/>
+                        {selectedNode && selectedNode.type == 'transponderNode' && 'Configure Transponder'}
+                        {selectedNode && selectedNode.type == 'testsuiteNode' && 'Configure Testsuite'}
+                        {selectedNode && selectedNode.type == 'dataNode' && 'Configure Data'}
+                        {selectedNode && selectedNode.type == 'testcodeNode' && 'Configure Testcode'}
+                        {selectedNode && selectedNode.type == 'codeblockNode' && 'Configure Codeblock'}
+                    </div>
+                    <div style={{marginTop: '10px', display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                        <button className={styles.tab} style={selectedTab=="Parameters"? selected_tab_style: {}} onClick={()=>setSelectedtab("Parameters")}>
+                            Parameters
+                        </button>
+                        <button className={styles.tab} style={selectedTab=="Description"? selected_tab_style: {}} onClick={()=>setSelectedtab("Description")}>
+                            Description
+                        </button>
+                    </div>
+                    <div style={{ margin:'0px auto 5px auto', height: '1px', backgroundColor: 'grey', width: '100%', borderRadius: '5px'}}></div>
 
-                {selectedNode && getConfig(selectedNode.type, selectedTab)}
-                
-                <div style={{ position: 'fixed', bottom: '5px', width: '95%', display: 'flex', justifyContent: 'flex-end'}}>
-                    <button 
-                        style={{margin: '10px 10px', border: '1px solid #d71e28', borderRadius: '5px', padding: '5px 10px', fontSize: '14px'}} 
-                        onClick={()=>{
-                            onClose();
-                            setSelectedtab("Parameters");
-                        }}
-                    >
-                        Close
-                    </button>
+                    {selectedNode && getConfig(selectedNode.type, selectedTab)}
+                    
+                    <div style={{ position: 'fixed', bottom: '5px', width: '95%', display: 'flex', justifyContent: 'flex-end'}}>
+                        <button 
+                            style={{margin: '10px 10px', border: '1px solid #d71e28', borderRadius: '5px', padding: '5px 10px', fontSize: '14px'}} 
+                            onClick={()=>{
+                                onClose();
+                                setSelectedtab("Parameters");
+                            }}
+                        >
+                            Close
+                        </button>
 
-                    <button 
-                        style={{margin: '10px 10px', backgroundColor: '#d71e28', color: 'white', borderRadius: '5px', padding: '5px 10px', fontSize: '14px'}} 
-                        onClick={() => {
-                            onUpdate();
-                            setSelectedtab("Parameters");
-                        }}
-                    >
-                        Update
-                    </button>
+                        <button 
+                            style={{margin: '10px 10px', backgroundColor: '#d71e28', color: 'white', borderRadius: '5px', padding: '5px 10px', fontSize: '14px'}} 
+                            onClick={() => {
+                                onUpdate();
+                                setSelectedtab("Parameters");
+                            }}
+                        >
+                            Update
+                        </button>
 
+                    </div>
+                </div>
+                <div className={styles.dialogItem} style={{paddingLeft: '10px'}}>
+                    Output
                 </div>
             </div>
         </dialog>

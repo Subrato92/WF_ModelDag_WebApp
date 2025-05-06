@@ -44,8 +44,7 @@ function Flow() {
 
     const [menuContext, setMenuContext] = useState(null);
     const { screenToFlowPosition } = useReactFlow();
-
-    const [nodeType] = useDragNDrop();
+    const [nodeType, _1, _2, _3, isOpen, setIsOpen, toggleOpen] = useDragNDrop();
 
     const getId = useCallback(
         () => {
@@ -135,14 +134,21 @@ function Flow() {
         console.log('node clicked: event: ', event);
         console.log('node clicked: node: ', node);
         setNodeConfigDialogOpen(true);
+        if(isOpen){
+            setIsOpen(false);
+            toggleOpen();
+        }
         var node = {
             id: node.id,
             type: node.type,
             position: node.position,
             data: node.data
         }
+
+        console.log('node clicked: edges: ', edges);
+        console.log('node clicked: nodes: ', nodes);
         setSelectedNode(node);
-    }, []);
+    }, [edges, nodes, isOpen]);
 
     const onDialogClose = useCallback(() => {
         setNodeConfigDialogOpen(false);

@@ -17,8 +17,8 @@ import { useRouter } from 'next/navigation';
 
 export default function DagSidebarMenu() {
     const router = useRouter();
-    const [_, setNodeId] = useDragNDrop();
-    const [isOpen, setIsOpen] = useState(true);
+    const [_1, setNodeId, _2, _3, isOpen, setIsOpen, toggleOpen] = useDragNDrop();
+    
 
     const onDragOver = useCallback((e) => {
         e.preventDefault();
@@ -35,18 +35,6 @@ export default function DagSidebarMenu() {
         setNodeId(e.target.id);
         e.dataTransfer.effectAllowed = 'move';
     }, []);
-
-    const toggleOpen = useCallback(() => {
-        setIsOpen(!isOpen);
-        if(isOpen) {
-            document.getElementById('toolbarContainer').classList.add(styles.toolbarContainerShrink);
-            document.getElementById('toolbarHeader').classList.add(styles.toolbarHeaderShrink);
-        }else{
-            document.getElementById('toolbarContainer').classList.remove(styles.toolbarContainerShrink);
-            document.getElementById('toolbarHeader').classList.remove(styles.toolbarHeaderShrink);
-        }
-        
-    }, [isOpen]);
 
     const onCreate = useCallback(() => {
 

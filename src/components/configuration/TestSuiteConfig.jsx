@@ -58,7 +58,7 @@ export function Parameters(){
     }
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', fontSize: '12px', height: '77%', overflow: 'scroll'}}>
+        <div style={{display: 'flex', flexDirection: 'column', fontSize: '12px', height: '77%', overflowY: 'scroll', overflowX: 'hidden'}}>
             <div style={{display: 'flex', flexDirection: 'column', margin: '8px 4px'}}>
                 Select Signed-off Test Suite
                 <select name="page_size" id="page_size" style={{border: '1px solid black', borderRadius: '5px', margin: '4px 0px', padding: '8px 12px'}}>
