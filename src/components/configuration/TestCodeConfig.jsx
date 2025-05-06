@@ -42,6 +42,19 @@ export function Parameters(){
                 </select>
             </div>
             <div style={{display: 'flex', flexDirection: 'column', margin: '8px 4px'}}>
+                Map the fields
+                <div style={{display: 'flex', flexDirection: 'column', margin: '4px 0px'}}>
+                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                        <span>Model Base</span>
+                        <div style={{flex: '1 1 10%'}}></div>
+                        <div style={{border: '1px solid black', padding: '6px', height: '35px', width: '60%', margin: '4px 6px', borderRadius: '4px'}}>
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div style={{display: 'flex', flexDirection: 'column', margin: '8px 4px'}}>
                 Fill in the parameters
                 <div style={{display: 'grid', gridTemplateColumns: 'auto auto', gap: '4px', margin: '4px 0px'}}>
                     {params.map((param, idx) => <input key={idx} placeholder={param.name} type={param.type} style={{ padding: '4px', border: '1px solid grey', borderRadius: '4px'}}/>)}

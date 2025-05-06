@@ -12,7 +12,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-47%, -45%);
-    width: 1100px;
+    width: 800px;
     height: 600px;
     background-color: white;
     border: 1px solid gray;
@@ -24,10 +24,10 @@
 }
 
 .dialogSectionConfigure {
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-75%, -50%);
     width: 500px;
     height: 640px;
     background-color: white;
@@ -35,7 +35,6 @@
     border-radius: 5px;
     padding: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-    flex: 1 1 250px
 }
 
 .dialogItem {

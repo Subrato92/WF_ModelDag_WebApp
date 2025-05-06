@@ -27,9 +27,23 @@ export default function Dialog({isOpen, selectedNode, onClose, onUpdate}){
             <div className={styles.dialogContent}>
                 <div className={styles.dialogItem}>
                     Input
-                </div>
-                <div className={styles.dialogItem} style={{flex: '1 1 200px'}}>
-                    
+                    <div style={{ 
+                            border: '1px solid black', 
+                            padding: '4px', 
+                            borderRadius: '4px', 
+                            fontSize: '14px', 
+                            color: 'black',
+                            display: 'flex',
+                            margin: '6px 0px'
+                        }} draggable>
+                        <span style={{ 
+                            alignContent: 'center', 
+                            justifyContent: 'center',
+                            margin: 'auto'
+                        }}>
+                            ModelBase
+                        </span>
+                    </div>
                 </div>
                 <div className={styles.dialogSectionConfigure}>
                     <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
@@ -75,9 +89,11 @@ export default function Dialog({isOpen, selectedNode, onClose, onUpdate}){
 
                     </div>
                 </div>
-                <div className={styles.dialogItem} style={{paddingLeft: '10px'}}>
-                    Output
-                </div>
+                {/*
+                    <div className={styles.dialogItem} style={{paddingLeft: '10px'}}>
+                        Output
+                    </div>
+                */}
             </div>
         </dialog>
     )
