@@ -99,7 +99,7 @@ export default function DagSidebarMenu() {
                     </div>
                     {!isOpen && <span className={styles.tooltip}>Code Block</span>}
                 </div>
-                <div style={{ width: '100%', height: "250px", borderBottom: '1px solid grey', marginBottom: '10px' }}></div>
+                <div style={{ width: '100%', height: "75px", borderBottom: '1px solid grey', marginBottom: '10px' }}></div>
                 <div className={isOpen ? styles.item : styles.roundedItem} onClick={onCreate}>
                     <div className={styles.nodes} id="create">
                         <BookmarkSharpIcon sx={{fontSize: '24px'}}/> {isOpen && 'Create'} 
