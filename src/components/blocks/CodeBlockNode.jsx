@@ -9,7 +9,7 @@ export default memo(({ data, isConnectable }) => {
 
     const state = useDragNDrop();
     let theme = state[2];
-    console.log(theme);
+    //console.log(theme);
 
     let styleClass = Style.container_light;
     let iconStyleClass = Style.codeblock_icon_light;
