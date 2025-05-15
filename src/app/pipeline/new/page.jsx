@@ -214,7 +214,7 @@ function Flow() {
                 </ReactFlow>
             </div>
             <BottomNavBar/>
-            <Dialog isOpen={nodeConfigDialogOpen} selectedNode={selectedNode} sourceNodes={sourceNodes} onClose={onDialogClose} onUpdate={onConfigUpdate}/>
+            <Dialog isOpen={nodeConfigDialogOpen} selectedNode={selectedNode} sourceNodes={sourceNodes} onClose={onDialogClose} onUpdate={onConfigUpdate} openedAt={Date.now().toString()}/>
         </div>
     );
 }

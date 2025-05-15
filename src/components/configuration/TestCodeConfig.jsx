@@ -1,7 +1,8 @@
 "use client"
 import { type } from 'os';
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import AddIcon from '@mui/icons-material/Add';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function TestCodeConfig({section, metadata, onChangeMetadata, config, onChangeConfig}){
     return (
@@ -13,6 +14,8 @@ export default function TestCodeConfig({section, metadata, onChangeMetadata, con
 }
 
 export function Parameters({metadata, onChangeMetadata, config, onChangeConfig}){
+
+    const [exception, setException] = useState(null);
 
     const updateMetadata = useCallback( (field_name, value) => {
         var updatedMetadata = {...metadata};
@@ -45,8 +48,20 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
         { name: 'special_missing_codes', type: 'text' }
     ]
 
+    var input_fields = [
+        { name: 'Transponder', id: 'transponder', type: 'transponderNode' },
+        { name: 'Test Data', id: 'test_data', type: 'dataNode' },
+    ]
+
     return (
         <div style={{display: 'flex', flexDirection: 'column', fontSize: '12px', height: '77%', overflowY: 'scroll', overflowX: 'hidden'}}>
+            { exception &&
+                <div style={{margin: '8px 4px', padding: '8px 12px', border: "1px solid var(--wf-red)", borderRadius: '5px', display: 'flex', flexDirection: 'row', alignContent: 'center', justifyContent: 'center'}}>
+                    <h4 style={{color: 'var(--wf-red)', paddingRight: '4px'}}>{'Error :'}</h4>
+                    <h4 style={{flex: '1 1 50%'}}>{exception}</h4>
+                    <CloseIcon style={{color: 'var(--wf-red)', fontSize: '16px'}} onClick={(e) => setException(null)}/>
+                </div>
+            }
             <div style={{display: 'flex', flexDirection: 'column', margin: '8px 4px'}}>
                 Select Signed-off Test Code
                 <select 
@@ -64,14 +79,36 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
             </div>
             <div style={{display: 'flex', flexDirection: 'column', margin: '8px 4px'}}>
                 Map the fields
+                
                 <div style={{display: 'flex', flexDirection: 'column', margin: '4px 0px'}}>
-                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                        <span>Model Base</span>
+                    {input_fields.map((input_field, idx) => <div key={idx} style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                        <span>{input_field.name}</span>
                         <div style={{flex: '1 1 10%'}}></div>
-                        <div style={{border: '1px solid black', padding: '6px', height: '35px', width: '60%', margin: '4px 6px', borderRadius: '4px'}}>
-
+                        <div 
+                            style={{border: '1px solid black', padding: '6px', height: '35px', width: '60%', margin: '4px 6px', borderRadius: '4px'}}
+                            onDrop={(event) => {
+                                event.preventDefault();
+                                console.log("dropped Item: ", event.dataTransfer);
+                                console.log("dropped Item Meta: ", event.dataTransfer.getData("meta"));
+                                var nodeMeta = JSON.parse(event.dataTransfer.getData("meta"));
+                                if(input_field.type != nodeMeta.type){
+                                    setException("Required node type: "+ input_field.type+". Received "+ nodeMeta.type);
+                                }else{
+                                    document.getElementById(input_field.id).value = nodeMeta.type;
+                                    updateMetadata("input_field_"+input_field.id, nodeMeta.type);
+                                }
+                            }}
+                            onDragOver={(event)=> {
+                                event.preventDefault();
+                                event.dataTransfer.dropEffect = 'move';
+                            }}
+                        >
+                            <input id={input_field.id} value={metadata.hasOwnProperty("input_field_"+input_field.id) ? metadata["input_field_"+input_field.id] : ""} readOnly></input>
+                            {   metadata.hasOwnProperty("input_field_"+input_field.id) && metadata["input_field_"+input_field.id].length > 1 &&
+                                <CloseIcon style={{float: 'right', color: 'var(--wf-red)', fontSize: '16px'}} onClick={(e) => updateMetadata("input_field_"+input_field.id, "")}/>
+                            }
                         </div>
-                    </div>
+                    </div>)}
                     
                 </div>
             </div>

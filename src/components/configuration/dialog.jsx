@@ -1,5 +1,5 @@
 "use client"
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import styles from './dialog.module.css';
 import EditIcon from '@mui/icons-material/Edit';
 import TransponderConfig from './TransponderConfig';
@@ -12,11 +12,17 @@ const selected_tab_style = {
     borderBottom: '2px solid #d71e28'
 }
 
-export default function Dialog({isOpen, selectedNode, sourceNodes, onClose, onUpdate}){
+export default function Dialog({isOpen, selectedNode, sourceNodes, onClose, onUpdate, openedAt}){
 
     const [selectedTab, setSelectedtab] = useState("Parameters");
     const [nodeMetadata, setNodeMetadata] = useState(selectedNode && selectedNode.data.hasOwnProperty("metadata") ? selectedNode.data.metadata : {});
     const [nodeConfig, setNodeConfig] = useState(selectedNode && selectedNode.data.hasOwnProperty("config") ? selectedNode.data.config : {});
+    console.log("Dialog Opened At:"+ openedAt);
+
+    useEffect(() => {
+        setNodeMetadata(selectedNode && selectedNode.data.hasOwnProperty("metadata") ? selectedNode.data.metadata : {});
+        setNodeConfig(selectedNode && selectedNode.data.hasOwnProperty("config") ? selectedNode.data.config : {});
+    }, [openedAt, selectedNode])
 
     return (
         <dialog className={styles.nodeConfigDialog} open={isOpen} 
@@ -31,7 +37,15 @@ export default function Dialog({isOpen, selectedNode, sourceNodes, onClose, onUp
                     Input
                     { 
                         sourceNodes.map((sourceNode, idx) => 
-                            <div key={idx} className={styles.draggableNode} draggable>
+                            <div 
+                                key={idx} 
+                                className={styles.draggableNode} 
+                                onDragStart={(event) => { 
+                                    //event.preventDefault();
+                                    event.dataTransfer.effectAllowed = 'move';
+                                    event.dataTransfer.setData("meta", JSON.stringify(sourceNode));
+                                }}
+                                draggable>
                                 <span>
                                     {sourceNode.type}
                                 </span>
