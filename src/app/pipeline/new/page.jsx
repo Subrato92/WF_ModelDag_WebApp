@@ -41,6 +41,7 @@ function Flow() {
     const [nodeCount, setNodeCount] = useState(0);
     const [nodeConfigDialogOpen, setNodeConfigDialogOpen] = useState(false);
     const [selectedNode, setSelectedNode] = useState(null);
+    const [sourceNodes, setSourceNodes] = useState([]);
 
     const [menuContext, setMenuContext] = useState(null);
     const { screenToFlowPosition } = useReactFlow();
@@ -133,32 +134,57 @@ function Flow() {
     const onNodeClick = useCallback((event, node) => {
         console.log('node clicked: event: ', event);
         console.log('node clicked: node: ', node);
+
+        console.log('node clicked: edges: ', edges);
+        console.log('node clicked: nodes: ', nodes);
+
+        var edgesToNode = edges.filter((edge) => edge.target==node.id);
+        var sourceNodeIds = []
+        edgesToNode.forEach(edge => {
+            sourceNodeIds.push(edge.source)
+        });
+        console.log('node clicked: edgesToNode: ', edgesToNode);
+        console.log('node clicked: sourceNodeIds: ', sourceNodeIds);
+        var contextSourceNodes = nodes.filter((node) => sourceNodeIds.includes(node.id));
+        console.log('node clicked: sourceNodes: ', contextSourceNodes);
+        setSourceNodes(contextSourceNodes);
+
+        setSelectedNode(node);
+
         setNodeConfigDialogOpen(true);
         if(isOpen){
             setIsOpen(false);
             toggleOpen();
         }
-        var node = {
-            id: node.id,
-            type: node.type,
-            position: node.position,
-            data: node.data
-        }
-
-        console.log('node clicked: edges: ', edges);
-        console.log('node clicked: nodes: ', nodes);
-        setSelectedNode(node);
-    }, [edges, nodes, isOpen]);
+    }, [edges, nodes, isOpen, setSourceNodes]);
 
     const onDialogClose = useCallback(() => {
         setNodeConfigDialogOpen(false);
         setSelectedNode(null);
     }, [setNodeConfigDialogOpen, setSelectedNode])
 
-    const onConfigUpdate = useCallback(() => {
+    const onConfigUpdate = useCallback((metadata,  config) => {
         setNodeConfigDialogOpen(false);
+
+        var targetNodeData = {...selectedNode.data}
+        targetNodeData.metadata = metadata;
+        targetNodeData.config = config;
+
+        setNodes((nds) =>
+            nds.map((node) => {
+                if (node.id !== selectedNode.id) {
+                    return node;
+                }
+                console.log("Updating node:", node, ' with targetNodeData:', targetNodeData);
+                return {
+                    ...selectedNode,
+                    data: targetNodeData,
+                };
+            }),
+        );
+
         setSelectedNode(null);
-    }, [setNodeConfigDialogOpen, setSelectedNode])
+    }, [selectedNode, setNodeConfigDialogOpen, setSelectedNode, setNodes])
 
     return(
         <div className={styles.grid_container}>
@@ -188,7 +214,7 @@ function Flow() {
                 </ReactFlow>
             </div>
             <BottomNavBar/>
-            <Dialog isOpen={nodeConfigDialogOpen} selectedNode={selectedNode} onClose={onDialogClose} onUpdate={onConfigUpdate}/>
+            <Dialog isOpen={nodeConfigDialogOpen} selectedNode={selectedNode} sourceNodes={sourceNodes} onClose={onDialogClose} onUpdate={onConfigUpdate}/>
         </div>
     );
 }

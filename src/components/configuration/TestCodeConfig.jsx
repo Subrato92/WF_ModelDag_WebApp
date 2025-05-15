@@ -1,18 +1,34 @@
 "use client"
 import { type } from 'os';
-import React from 'react';
+import React, {useCallback} from 'react';
 import AddIcon from '@mui/icons-material/Add';
 
-export default function TestCodeConfig({section}){
+export default function TestCodeConfig({section, metadata, onChangeMetadata, config, onChangeConfig}){
     return (
         <React.Fragment>
-            {section=="Parameters" && <Parameters/>}
-            {section=="Description" && <Description/>}
+            {section=="Parameters" && <Parameters metadata={metadata} onChangeMetadata={onChangeMetadata} config={config} onChangeConfig={onChangeConfig}/>}
+            {section=="Description" && <Description metadata={metadata} onChangeMetadata={onChangeMetadata} config={config} onChangeConfig={onChangeConfig}/>}
         </React.Fragment>
     )
 }
 
-export function Parameters(){
+export function Parameters({metadata, onChangeMetadata, config, onChangeConfig}){
+
+    const updateMetadata = useCallback( (field_name, value) => {
+        var updatedMetadata = {...metadata};
+        updatedMetadata[field_name] = value;
+
+        onChangeMetadata(updatedMetadata)
+
+    }, [metadata, onChangeMetadata]);
+
+    const updateConfig = useCallback( (field_name, value) => {
+        var updatedConfig = {...config};
+        updatedConfig[field_name] = value;
+
+        onChangeConfig(updatedConfig);
+
+    }, [config, onChangeConfig]);
 
     var params = [
         { name: 'handle_missing_values', type: 'text' },
@@ -33,7 +49,12 @@ export function Parameters(){
         <div style={{display: 'flex', flexDirection: 'column', fontSize: '12px', height: '77%', overflowY: 'scroll', overflowX: 'hidden'}}>
             <div style={{display: 'flex', flexDirection: 'column', margin: '8px 4px'}}>
                 Select Signed-off Test Code
-                <select name="page_size" id="page_size" style={{border: '1px solid black', borderRadius: '5px', margin: '4px 0px', padding: '8px 12px'}}>
+                <select 
+                    name="page_size" 
+                    id="page_size" 
+                    style={{border: '1px solid black', borderRadius: '5px', margin: '4px 0px', padding: '8px 12px'}} 
+                    value={metadata.hasOwnProperty("testcode_id") ? metadata.testcode_id : "11213"}
+                    onChange={(e) => {updateMetadata("testcode_id", e.target.value)}}>
                     <option value="11213">Code 11213</option>
                     <option value="11214">Code 11214</option>
                     <option value="11215">Code 11215</option>
@@ -57,7 +78,14 @@ export function Parameters(){
             <div style={{display: 'flex', flexDirection: 'column', margin: '8px 4px'}}>
                 Fill in the parameters
                 <div style={{display: 'grid', gridTemplateColumns: 'auto auto', gap: '4px', margin: '4px 0px'}}>
-                    {params.map((param, idx) => <input key={idx} placeholder={param.name} type={param.type} style={{ padding: '4px', border: '1px solid grey', borderRadius: '4px'}}/>)}
+                    {params.map((param, idx) => <input 
+                            key={idx} 
+                            placeholder={param.name} 
+                            type={param.type} 
+                            style={{ padding: '4px', border: '1px solid grey', borderRadius: '4px'}}
+                            onChange={(e) => updateConfig(param.name, e.target.value)}
+                            value={config.hasOwnProperty(param.name) ? config[param.name] : ""}
+                        />)}
                 </div>
             </div>
             <div style={{display: 'flex', flexDirection: 'column', margin: '8px 4px'}}>
@@ -81,7 +109,16 @@ export function Parameters(){
 }
 
 
-export function Description(){
+export function Description({metadata, onChangeMetadata, config, onChangeConfig}){
+
+    const updateMetadata = useCallback( (field_name, value) => {
+        var updatedMetadata = {...metadata};
+        updatedMetadata[field_name] = value;
+
+        onChangeMetadata(updatedMetadata)
+
+    }, [metadata, onChangeMetadata]);
+
     return (
         <div style={{display: 'flex', flexDirection: 'column', fontSize: '12px'}}>
             <textarea 
@@ -94,7 +131,10 @@ export function Description(){
                 }} 
                 row='20' 
                 placeholder='Provide some description...' 
-                maxLength='200'/>
+                maxLength='200' 
+                onChange={(e) => updateMetadata("description", e.target.value)}
+                value={metadata.hasOwnProperty("description") ? metadata.description : ""}
+                />
         </div>
     )
 }

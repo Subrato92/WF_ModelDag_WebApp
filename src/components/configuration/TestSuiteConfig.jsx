@@ -2,17 +2,17 @@
 import React, {useState} from 'react';
 import AddIcon from '@mui/icons-material/Add';
 
-export default function TestSuiteConfig({section}){
+export default function TestSuiteConfig({section, metadata, onChangeMetadata, config, onChangeConfig}){
     return (
         <React.Fragment>
-            {section=="Parameters" && <Parameters/>}
-            {section=="Description" && <Description/>}
+            {section=="Parameters" && <Parameters metadata={metadata} onChangeMetadata={onChangeMetadata} config={config} onChangeConfig={onChangeConfig}/>}
+            {section=="Description" && <Description metadata={metadata} onChangeMetadata={onChangeMetadata} config={config} onChangeConfig={onChangeConfig}/>}
         </React.Fragment>
     )
 
 }
 
-export function Parameters(){
+export function Parameters({metadata, onChangeMetadata, config, onChangeConfig}){
     const [currentTestCode, setCurrentTestCode] = useState('Test Code 11231');
 
     const testCodes = {
@@ -114,7 +114,7 @@ export function Parameters(){
 }
 
 
-export function Description(){
+export function Description({metadata, onChangeMetadata, config, onChangeConfig}){
     return (
         <div style={{display: 'flex', flexDirection: 'column', fontSize: '12px'}}>
             <textarea 

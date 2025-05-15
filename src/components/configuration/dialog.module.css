@@ -23,6 +23,22 @@
     flex-direction: row;
 }
 
+.draggableNode {
+    border: 1px solid black;
+    padding: 4px;
+    border-radius: 4px; 
+    font-size: 14px;
+    color: black;
+    display: flex;
+    margin: 6px 0px;
+}
+
+.draggableNode > span {
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+}
+
 .dialogSectionConfigure {
     position: relative;
     top: 50%;

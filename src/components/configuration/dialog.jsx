@@ -12,9 +12,11 @@ const selected_tab_style = {
     borderBottom: '2px solid #d71e28'
 }
 
-export default function Dialog({isOpen, selectedNode, onClose, onUpdate}){
+export default function Dialog({isOpen, selectedNode, sourceNodes, onClose, onUpdate}){
 
     const [selectedTab, setSelectedtab] = useState("Parameters");
+    const [nodeMetadata, setNodeMetadata] = useState(selectedNode && selectedNode.data.hasOwnProperty("metadata") ? selectedNode.data.metadata : {});
+    const [nodeConfig, setNodeConfig] = useState(selectedNode && selectedNode.data.hasOwnProperty("config") ? selectedNode.data.config : {});
 
     return (
         <dialog className={styles.nodeConfigDialog} open={isOpen} 
@@ -27,23 +29,16 @@ export default function Dialog({isOpen, selectedNode, onClose, onUpdate}){
             <div className={styles.dialogContent}>
                 <div className={styles.dialogItem}>
                     Input
-                    <div style={{ 
-                            border: '1px solid black', 
-                            padding: '4px', 
-                            borderRadius: '4px', 
-                            fontSize: '14px', 
-                            color: 'black',
-                            display: 'flex',
-                            margin: '6px 0px'
-                        }} draggable>
-                        <span style={{ 
-                            alignContent: 'center', 
-                            justifyContent: 'center',
-                            margin: 'auto'
-                        }}>
-                            ModelBase
-                        </span>
-                    </div>
+                    { 
+                        sourceNodes.map((sourceNode, idx) => 
+                            <div key={idx} className={styles.draggableNode} draggable>
+                                <span>
+                                    {sourceNode.type}
+                                </span>
+                            </div>
+                        )
+                    }
+                    
                 </div>
                 <div className={styles.dialogSectionConfigure}>
                     <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
@@ -64,7 +59,7 @@ export default function Dialog({isOpen, selectedNode, onClose, onUpdate}){
                     </div>
                     <div style={{ margin:'0px auto 5px auto', height: '1px', backgroundColor: 'grey', width: '100%', borderRadius: '5px'}}></div>
 
-                    {selectedNode && getConfig(selectedNode.type, selectedTab)}
+                    {selectedNode && getConfig(selectedNode.type, selectedTab, nodeMetadata, setNodeMetadata, nodeConfig, setNodeConfig)}
                     
                     <div style={{ position: 'fixed', bottom: '5px', width: '95%', display: 'flex', justifyContent: 'flex-end'}}>
                         <button 
@@ -80,7 +75,7 @@ export default function Dialog({isOpen, selectedNode, onClose, onUpdate}){
                         <button 
                             style={{margin: '10px 10px', backgroundColor: '#d71e28', color: 'white', borderRadius: '5px', padding: '5px 10px', fontSize: '14px'}} 
                             onClick={() => {
-                                onUpdate();
+                                onUpdate(nodeMetadata, nodeConfig);
                                 setSelectedtab("Parameters");
                             }}
                         >
@@ -100,16 +95,16 @@ export default function Dialog({isOpen, selectedNode, onClose, onUpdate}){
 }
 
 
-function getConfig(type, section){
+function getConfig(type, section, metadata, onChangeMetadata, config, onChangeConfig){
     if(type == 'transponderNode')
-        return <TransponderConfig section={section}/>
+        return <TransponderConfig section={section} metadata={metadata} onChangeMetadata={onChangeMetadata} config={config} onChangeConfig={onChangeConfig}/>
 
     if(type == 'dataNode')
-        return <DataNodeConfig section={section}/>
+        return <DataNodeConfig section={section} metadata={metadata} onChangeMetadata={onChangeMetadata} config={config} onChangeConfig={onChangeConfig}/>
 
     if(type == 'testsuiteNode')
-        return <TestSuiteConfig section={section}/>
+        return <TestSuiteConfig section={section} metadata={metadata} onChangeMetadata={onChangeMetadata} config={config} onChangeConfig={onChangeConfig}/>
 
     if(type == 'testcodeNode')
-        return <TestCodeConfig section={section}/>
+        return <TestCodeConfig section={section} metadata={metadata} onChangeMetadata={onChangeMetadata} config={config} onChangeConfig={onChangeConfig}/>
 }
