@@ -1,0 +1,21 @@
+.draggableNode {
+    border: 1px solid black;
+    padding: 4px 0px;
+    padding-bottom: 0px;
+    border-radius: 4px; 
+    font-size: 14px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    margin: 6px 0px;
+}
+
+.components {
+    padding: 4px;
+    border-bottom: 1px solid black;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: baseline;
+}

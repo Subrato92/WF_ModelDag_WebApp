@@ -6,6 +6,7 @@ import TransponderConfig from './TransponderConfig';
 import DataNodeConfig from './DataNodeConfig';
 import TestSuiteConfig from './TestSuiteConfig';
 import TestCodeConfig from './TestCodeConfig';
+import TransponderInputNode from '@/components/inputNodes/TransponderNode'
 
 const selected_tab_style = {
     paddingBottom: '5px', 
@@ -36,21 +37,26 @@ export default function Dialog({isOpen, selectedNode, sourceNodes, onClose, onUp
                 <div className={styles.dialogItem}>
                     Input
                     { 
-                        sourceNodes.map((sourceNode, idx) => 
-                            <div 
-                                key={idx} 
-                                className={styles.draggableNode} 
-                                onDragStart={(event) => { 
-                                    //event.preventDefault();
-                                    event.dataTransfer.effectAllowed = 'move';
-                                    event.dataTransfer.setData("meta", JSON.stringify(sourceNode));
-                                }}
-                                draggable>
-                                <span>
-                                    {sourceNode.type}
-                                </span>
-                            </div>
-                        )
+                        sourceNodes.map((sourceNode, idx) => {
+                            if(sourceNode.type=="transponderNode")
+                                return <TransponderInputNode key={idx} nodeMeta={sourceNode}/>;
+
+                            return (
+                                <div 
+                                    key={idx} 
+                                    className={styles.draggableNode} 
+                                    onDragStart={(event) => { 
+                                        //event.preventDefault();
+                                        event.dataTransfer.effectAllowed = 'move';
+                                        event.dataTransfer.setData("meta", JSON.stringify(sourceNode));
+                                    }}
+                                    draggable>
+                                    <span>
+                                        {sourceNode.type}
+                                    </span>
+                                </div>
+                            );
+                        })
                     }
                     
                 </div>
