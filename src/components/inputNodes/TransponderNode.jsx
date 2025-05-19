@@ -12,7 +12,7 @@ export default function TransponderInputNode({key, nodeMeta}){
 
     var components = [
         { name: "SMMP URL", type: 'smmp_url'},
-        { name: "Model Info", type: 'model_info'},
+        { name: "Model", type: 'model'},
         { name: "Test Data", type: 'dataNode'},
         { name: "Train Data", type: 'dataNode'}
     ]

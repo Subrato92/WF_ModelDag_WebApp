@@ -50,6 +50,9 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
 
     var input_fields = [
         { name: 'Transponder', id: 'transponder', type: 'transponderNode' },
+        { name: 'SMMP Url', id: 'url', type: 'smmp_url' },
+        { name: 'Model', id: 'model', type: 'model' },
+        { name: 'Train Data', id: 'train_data', type: 'dataNode' },
         { name: 'Test Data', id: 'test_data', type: 'dataNode' },
     ]
 

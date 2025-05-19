@@ -66,3 +66,12 @@
     margin-top: 8px; 
     font-size: 14px;
 }
+
+.bottom_menu {
+    position: fixed;
+    bottom: 5px;
+    width: 95%;
+    display: flex; 
+    justify-content: flex-end; 
+    z-index: 5px;
+}

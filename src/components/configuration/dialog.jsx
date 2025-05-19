@@ -81,7 +81,7 @@ export default function Dialog({isOpen, selectedNode, sourceNodes, onClose, onUp
 
                     {selectedNode && getConfig(selectedNode.type, selectedTab, nodeMetadata, setNodeMetadata, nodeConfig, setNodeConfig)}
                     
-                    <div style={{ position: 'fixed', bottom: '5px', width: '95%', display: 'flex', justifyContent: 'flex-end'}}>
+                    <div className={styles.bottom_menu}>
                         <button 
                             style={{margin: '10px 10px', border: '1px solid #d71e28', borderRadius: '5px', padding: '5px 10px', fontSize: '14px'}} 
                             onClick={()=>{
