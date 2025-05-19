@@ -88,7 +88,16 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
                         <span>{input_field.name}</span>
                         <div style={{flex: '1 1 10%'}}></div>
                         <div 
-                            style={{border: '1px solid black', padding: '6px', height: '35px', width: '60%', margin: '4px 6px', borderRadius: '4px'}}
+                            style={{
+                                border: '1px solid black', 
+                                padding: '6px', 
+                                height: '35px', 
+                                width: '60%', 
+                                margin: '4px 6px', 
+                                borderRadius: '4px',
+                                display: 'flex',
+                                flexDirection: 'row'
+                            }}
                             onDrop={(event) => {
                                 event.preventDefault();
                                 console.log("dropped Item: ", event.dataTransfer);
@@ -97,8 +106,12 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
                                 if(input_field.type != nodeMeta.type){
                                     setException("Required node type: "+ input_field.type+". Received "+ nodeMeta.type);
                                 }else{
-                                    document.getElementById(input_field.id).value = nodeMeta.type;
-                                    updateMetadata("input_field_"+input_field.id, nodeMeta.type);
+                                    document.getElementById(input_field.id+"_value").value = nodeMeta.value;
+                                    var field_metaData = {};
+                                    field_metaData.type = nodeMeta.type;
+                                    field_metaData.value = nodeMeta.value;
+                                    field_metaData.subtype = nodeMeta.subtype;
+                                    updateMetadata("input_field_"+input_field.id, field_metaData);
                                 }
                             }}
                             onDragOver={(event)=> {
@@ -106,9 +119,11 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
                                 event.dataTransfer.dropEffect = 'move';
                             }}
                         >
-                            <input id={input_field.id} value={metadata.hasOwnProperty("input_field_"+input_field.id) ? metadata["input_field_"+input_field.id] : ""} readOnly></input>
-                            {   metadata.hasOwnProperty("input_field_"+input_field.id) && metadata["input_field_"+input_field.id].length > 1 &&
-                                <CloseIcon style={{float: 'right', color: 'var(--wf-red)', fontSize: '16px'}} onClick={(e) => updateMetadata("input_field_"+input_field.id, "")}/>
+                            <div style={{ display: 'flex', flexDirection: 'column', width: '95%', height:'95%', overflowX: 'hidden', overflowY: 'scroll' }}>
+                                <input id={input_field.id+"_value"} value={getMetafieldValue(metadata, "input_field_"+input_field.id, "value")} readOnly></input>
+                            </div>
+                            {  getMetafieldValue(metadata, "input_field_"+input_field.id, "value").length > 1 &&
+                                <CloseIcon style={{float: 'right', color: 'var(--wf-red)', fontSize: '16px'}} onClick={(e) => updateMetadata("input_field_"+input_field.id, {})}/>
                             }
                         </div>
                     </div>)}
@@ -148,6 +163,12 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
     )
 }
 
+const getMetafieldValue = (metadata, field_id, field_name) => {
+    var fieldMeta = metadata.hasOwnProperty(field_id) ? metadata[field_id] : {};
+    if(fieldMeta.hasOwnProperty(field_name))
+        return fieldMeta[field_name];
+    return "";
+}
 
 export function Description({metadata, onChangeMetadata, config, onChangeConfig}){
 

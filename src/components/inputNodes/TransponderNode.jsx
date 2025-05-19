@@ -11,10 +11,10 @@ export default function TransponderInputNode({key, nodeMeta}){
     console.log("nodeMeta: ", nodeMeta);
 
     var components = [
-        { name: "SMMP URL", type: 'smmp_url'},
-        { name: "Model", type: 'model'},
-        { name: "Test Data", type: 'dataNode'},
-        { name: "Train Data", type: 'dataNode'}
+        { name: "SMMP URL", type: 'smmp_url', subtype: "url", data: "smmp://url"},
+        { name: "Model", type: 'model', subtype: "model", data: "11615 Regression Model"},
+        { name: "Test Data", type: 'dataNode', subtype: "test_data", data: "hdfs//:test_data_path"},
+        { name: "Train Data", type: 'dataNode', subtype: "train_data", data: "hdfs//:train_data_path"}
     ]
 
     return (
@@ -25,7 +25,10 @@ export default function TransponderInputNode({key, nodeMeta}){
                 //event.preventDefault();
                 if(!expand){
                     event.dataTransfer.effectAllowed = 'move';
-                    event.dataTransfer.setData("meta", JSON.stringify(nodeMeta));
+                    var componentNodeMeta = {...nodeMeta}
+                    componentNodeMeta.value = "smmp://transponder_url";
+                    componentNodeMeta.subtype = "Transponder";
+                    event.dataTransfer.setData("meta", JSON.stringify(componentNodeMeta));
                 }
             }}
             draggable={!expand}>
@@ -51,6 +54,9 @@ export default function TransponderInputNode({key, nodeMeta}){
                                 
                                 var componentNodeMeta = {...nodeMeta}
                                 componentNodeMeta.type = component.type;
+                                componentNodeMeta.value = component.data;
+                                componentNodeMeta.subtype = component.subtype;
+
                                 event.dataTransfer.setData("meta", JSON.stringify(componentNodeMeta));
                             }}
                             draggable>
