@@ -47,7 +47,7 @@ export default function Home() {
         </a>
         <button
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          onClick={() => router.push('/pipeline')}
+          onClick={() => router.push('/pipelines')}
         >
           <Image
             aria-hidden

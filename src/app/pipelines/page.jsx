@@ -27,11 +27,11 @@ export default function Pipelines() {
     ]
 
     const onView = (pipeline) => {
-        router.push('/pipeline/new')
+        router.push('/pipelines/new')
     }
 
     const onClick = (pipeline) => {
-        router.push('/pipeline/new')
+        router.push('/pipelines/new')
     }
 
     const onEdit = (pipeline) => {
