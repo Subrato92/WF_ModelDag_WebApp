@@ -11,10 +11,10 @@ export default function TransponderInputNode({key, nodeMeta}){
     console.log("nodeMeta: ", nodeMeta);
 
     var components = [
-        { name: "SMMP URL", type: 'smmp_url', subtype: "url", data: "smmp://url"},
-        { name: "Model", type: 'model', subtype: "model", data: "11615 Regression Model"},
-        { name: "Test Data", type: 'dataNode', subtype: "test_data", data: "hdfs//:test_data_path"},
-        { name: "Train Data", type: 'dataNode', subtype: "train_data", data: "hdfs//:train_data_path"}
+        { name: "SMMP URL", type: 'smmp_url', data: { subtype: "url", value: "smmp://url" }},
+        { name: "Model", type: 'model', data: { subtype: "model", value: "11615 Regression Model" }},
+        { name: "Test Data", type: 'dataNode', data: { subtype: "test_data", value: "hdfs//:test_data_path" }},
+        { name: "Train Data", type: 'dataNode', data: { subtype: "train_data", value: "hdfs//:train_data_path" }}
     ]
 
     return (
@@ -26,8 +26,7 @@ export default function TransponderInputNode({key, nodeMeta}){
                 if(!expand){
                     event.dataTransfer.effectAllowed = 'move';
                     var componentNodeMeta = {...nodeMeta}
-                    componentNodeMeta.value = "smmp://transponder_url";
-                    componentNodeMeta.subtype = "Transponder";
+                    componentNodeMeta.data = { value: "smmp://transponder_url", subtype: "Transponder" };
                     event.dataTransfer.setData("meta", JSON.stringify(componentNodeMeta));
                 }
             }}
@@ -54,8 +53,7 @@ export default function TransponderInputNode({key, nodeMeta}){
                                 
                                 var componentNodeMeta = {...nodeMeta}
                                 componentNodeMeta.type = component.type;
-                                componentNodeMeta.value = component.data;
-                                componentNodeMeta.subtype = component.subtype;
+                                componentNodeMeta.data = component.data;
 
                                 event.dataTransfer.setData("meta", JSON.stringify(componentNodeMeta));
                             }}

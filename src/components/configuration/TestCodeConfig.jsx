@@ -103,14 +103,15 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
                                 console.log("dropped Item: ", event.dataTransfer);
                                 console.log("dropped Item Meta: ", event.dataTransfer.getData("meta"));
                                 var nodeMeta = JSON.parse(event.dataTransfer.getData("meta"));
+                                
                                 if(input_field.type != nodeMeta.type){
                                     setException("Required node type: "+ input_field.type+". Received "+ nodeMeta.type);
                                 }else{
                                     document.getElementById(input_field.id+"_value").value = nodeMeta.value;
                                     var field_metaData = {};
                                     field_metaData.type = nodeMeta.type;
-                                    field_metaData.value = nodeMeta.value;
-                                    field_metaData.subtype = nodeMeta.subtype;
+                                    field_metaData.data = nodeMeta.data;
+                                    console.log('setting field Meta: ', field_metaData);
                                     updateMetadata("input_field_"+input_field.id, field_metaData);
                                 }
                             }}
@@ -120,9 +121,9 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
                             }}
                         >
                             <div style={{ display: 'flex', flexDirection: 'column', width: '95%', height:'95%', overflowX: 'hidden', overflowY: 'scroll' }}>
-                                <input id={input_field.id+"_value"} value={getMetafieldValue(metadata, "input_field_"+input_field.id, "value")} readOnly></input>
+                                <input id={input_field.id+"_value"} value={getMetafieldValue(metadata, "input_field_"+input_field.id, "data.value")} readOnly></input>
                             </div>
-                            {  getMetafieldValue(metadata, "input_field_"+input_field.id, "value").length > 1 &&
+                            {  getMetafieldValue(metadata, "input_field_"+input_field.id, "data.value").length > 1 &&
                                 <CloseIcon style={{float: 'right', color: 'var(--wf-red)', fontSize: '16px'}} onClick={(e) => updateMetadata("input_field_"+input_field.id, {})}/>
                             }
                         </div>
@@ -164,10 +165,23 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
 }
 
 const getMetafieldValue = (metadata, field_id, field_name) => {
+
+    if(metadata == null || metadata == undefined || fields.trim().length==0)
+        return "";
+
     var fieldMeta = metadata.hasOwnProperty(field_id) ? metadata[field_id] : {};
-    if(fieldMeta.hasOwnProperty(field_name))
-        return fieldMeta[field_name];
-    return "";
+    var obj = fieldMeta;
+
+    var fields = field_name.split(".");
+    for(let i=0; i<fields.length; i++){
+        console.log('field: ', fields[i], ', obj:', obj, 'typeof:', typeof obj);
+        if(!obj.hasOwnProperty(fields[i]))
+            return "";
+
+        obj = obj[fields[i]];
+    }
+
+    return obj;
 }
 
 export function Description({metadata, onChangeMetadata, config, onChangeConfig}){
