@@ -166,7 +166,7 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
 
 const getMetafieldValue = (metadata, field_id, field_name) => {
 
-    if(metadata == null || metadata == undefined || fields.trim().length==0)
+    if( metadata == null || metadata == undefined || field_name == undefined || field_name.trim().length==0 )
         return "";
 
     var fieldMeta = metadata.hasOwnProperty(field_id) ? metadata[field_id] : {};

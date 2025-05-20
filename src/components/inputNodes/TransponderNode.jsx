@@ -5,7 +5,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Image from "next/image";
 
-export default function TransponderInputNode({key, nodeMeta}){
+export default function TransponderInputNode({nodeMeta}){
     const [expand, setExpand] = useState(false);
 
     console.log("nodeMeta: ", nodeMeta);
@@ -19,7 +19,6 @@ export default function TransponderInputNode({key, nodeMeta}){
 
     return (
         <div 
-            key={key} 
             className={style.draggableNode} 
             onDragStart={(event) => { 
                 //event.preventDefault();
