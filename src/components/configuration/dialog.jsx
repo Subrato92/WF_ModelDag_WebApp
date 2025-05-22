@@ -23,7 +23,22 @@ export default function Dialog({isOpen, selectedNode, sourceNodes, onClose, onUp
     useEffect(() => {
         setNodeMetadata(selectedNode && selectedNode.data.hasOwnProperty("metadata") ? selectedNode.data.metadata : {});
         setNodeConfig(selectedNode && selectedNode.data.hasOwnProperty("config") ? selectedNode.data.config : {});
-    }, [openedAt, selectedNode])
+        var defaultDialogWidth = 550;
+        if(sourceNodes && sourceNodes.length > 0){
+            defaultDialogWidth = defaultDialogWidth + 200;
+        }
+
+        document.getElementById("dialogContent").style.width = `${defaultDialogWidth}px`;
+
+        if(defaultDialogWidth > 550){
+            document.getElementById("configureSection").style.left = "0%";
+            document.getElementById("configureSection").style.transform = "translate(5%, -50%)";
+        }else{
+            document.getElementById("configureSection").style.left = "50%";
+            document.getElementById("configureSection").style.transform = "translate(-50%, -50%)";
+        }
+
+    }, [openedAt, selectedNode, sourceNodes])
 
     return (
         <dialog className={styles.nodeConfigDialog} open={isOpen} 
@@ -33,17 +48,18 @@ export default function Dialog({isOpen, selectedNode, sourceNodes, onClose, onUp
                     setSelectedtab("Parameters");
                 }
             }}>
-            <div className={styles.dialogContent}>
-                <div className={styles.dialogItem}>
-                    Input
-                    { 
-                        sourceNodes.map((sourceNode, idx) => {
-                            return <InputNode key={idx} nodeMeta={sourceNode}/>;
-                        })
-                    }
-                    
-                </div>
-                <div className={styles.dialogSectionConfigure}>
+            <div id="dialogContent" className={styles.dialogContent}>
+                {sourceNodes && sourceNodes.length > 0 &&
+                    <div className={styles.dialogInputItems}>
+                        Input
+                        { 
+                            sourceNodes.map((sourceNode, idx) => {
+                                return <InputNode key={idx} nodeMeta={sourceNode}/>;
+                            })
+                        }
+                        
+                    </div>}
+                <div id="configureSection" className={styles.dialogSectionConfigure}>
                     <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                         <EditIcon sx={{fontSize: '18px', marginRight: '10px', color: '#d71e28'}}/>
                         {selectedNode && selectedNode.type == 'transponderNode' && 'Configure Transponder'}

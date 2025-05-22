@@ -12,7 +12,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-47%, -45%);
-    width: 800px;
+    min-width:550px;
+    width: 550px;
     height: 600px;
     background-color: white;
     border: 1px solid gray;
@@ -43,7 +44,8 @@
     position: relative;
     top: 50%;
     left: 50%;
-    transform: translate(-75%, -50%);
+    transform: translate(-50%, -50%);
+    min-width: 500px;
     width: 500px;
     height: 640px;
     background-color: white;
@@ -53,9 +55,14 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
-.dialogItem {
-    width: 280px;
-    height: 100%;
+.dialogInputItems {
+    position: relative;
+    top: 0%;
+    left: 0%;
+    transform: translate(1%, 1%);
+    min-width: 250px;
+    width: 250px;
+    height: 95%;
     margin: 4px;
     padding: 4px;
     color: gray;
