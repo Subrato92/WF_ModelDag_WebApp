@@ -81,7 +81,7 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
                 </select>
             </div>
             <div style={{display: 'flex', flexDirection: 'column', margin: '8px 4px'}}>
-                Map the fields
+                Arguments
                 
                 <div style={{display: 'flex', flexDirection: 'column', margin: '4px 0px'}}>
                     {input_fields.map((input_field, idx) => <div key={idx} style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
