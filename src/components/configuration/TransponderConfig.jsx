@@ -1,29 +1,61 @@
 "use client"
-import React from 'react';
+import React, {useState, useCallback} from 'react';
 
-export default function TransponderConfig({section}){
+export default function TransponderConfig({section, metadata, onChangeMetadata, config, onChangeConfig}){
+
     return (
         <React.Fragment>
-            {section=="Parameters" && <Parameters/>}
-            {section=="Description" && <Description/>}
+            {section=="Parameters" && <Parameters metadata={metadata} onChangeMetadata={onChangeMetadata} config={config} onChangeConfig={onChangeConfig}/>}
+            {section=="Description" && <Description metadata={metadata} onChangeMetadata={onChangeMetadata} config={config} onChangeConfig={onChangeConfig}/>}
         </React.Fragment>
     )
 
 }
 
-export function Parameters(){
+export function Parameters({metadata, onChangeMetadata, config, onChangeConfig}){
+    const [exception, setException] = useState(null);
+
+    const updateMetadata = useCallback( (field_name, value) => {
+        var updatedMetadata = {...metadata};
+        updatedMetadata[field_name] = value;
+
+        onChangeMetadata(updatedMetadata)
+
+    }, [metadata, onChangeMetadata]);
+
+    const updateConfig = useCallback( (field_name, value) => {
+        var updatedConfig = {...config};
+        updatedConfig[field_name] = value;
+
+        onChangeConfig(updatedConfig);
+
+    }, [config, onChangeConfig]);
+
     return (
         <div style={{display: 'flex', flexDirection: 'column', fontSize: '12px'}}>
             <div style={{display: 'flex', flexDirection: 'column', margin: '8px 4px'}}>
                 SMMP URL
-                <input type='url' style={{border: '1px solid black', borderRadius: '5px', padding: '2px 4px', margin: "4px 0px"}}/>
+                <input 
+                    type='url' 
+                    style={{border: '1px solid black', borderRadius: '5px', padding: '2px 4px', margin: "4px 0px"}}
+                    value={metadata.hasOwnProperty("url") ? metadata["url"] : ""}
+                    onChange={(e) => updateMetadata("url", e.target.value)}
+                />
             </div>
         </div>
     )
 }
 
 
-export function Description(){
+export function Description({metadata, onChangeMetadata, config, onChangeConfig}){
+    const updateMetadata = useCallback( (field_name, value) => {
+        var updatedMetadata = {...metadata};
+        updatedMetadata[field_name] = value;
+
+        onChangeMetadata(updatedMetadata)
+
+    }, [metadata, onChangeMetadata]);
+
     return (
         <div style={{display: 'flex', flexDirection: 'column', fontSize: '12px'}}>
             <textarea 
@@ -36,7 +68,10 @@ export function Description(){
                 }} 
                 row='20' 
                 placeholder='Provide some description...' 
-                maxLength='200'/>
+                maxLength='200'
+                onChange={(e) => updateMetadata("description", e.target.value)}
+                value={metadata.hasOwnProperty("description") ? metadata.description : ""}
+                />
         </div>
     )
 }
