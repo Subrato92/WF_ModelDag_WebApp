@@ -31,12 +31,6 @@ export default memo(({ data, isConnectable }) => {
                     isConnectable={isConnectable}
                 />
                 <DeveloperBoardIcon className={iconStyleClass} sx={{fontSize: '60px', transform: 'rotate(180deg)'}}/> 
-                <Handle
-                    type="target"
-                    position={Position.Left} 
-                    id="a" 
-                    isConnectable={isConnectable}
-                />
             </div>
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '14px', fontWeight: 'bold', marginTop: '3px'}}>
                 Transponder
