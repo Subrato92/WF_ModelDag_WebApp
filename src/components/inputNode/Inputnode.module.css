@@ -11,6 +11,15 @@
     width: 100%;
 }
 
+.draggableNodeEffects {
+}
+
+.draggableNodeEffects:hover {
+    background-color: #f0f0f0;
+    cursor: grab;
+    color: var(--wf-red);
+}
+
 .components {
     padding: 4px 8px;
     border-bottom: 1px solid black;
@@ -19,4 +28,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: baseline;
+}
+
+.components:hover {
+    background-color: #f0f0f0;
+    cursor: grab;
+    color: var(--wf-red);
 }

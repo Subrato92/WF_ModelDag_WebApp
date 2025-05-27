@@ -2,7 +2,7 @@
 import React, {useCallback, useState, useEffect} from 'react';
 import styles from './dialog.module.css';
 import EditIcon from '@mui/icons-material/Edit';
-import TransponderConfig from './TransponderConfig';
+import ModelNodeConfig from './ModelNodeConfig';
 import DataNodeConfig from './DataNodeConfig';
 import TestSuiteConfig from './TestSuiteConfig';
 import TestCodeConfig from './TestCodeConfig';
@@ -62,7 +62,7 @@ export default function Dialog({isOpen, selectedNode, sourceNodes, onClose, onUp
                 <div id="configureSection" className={styles.dialogSectionConfigure}>
                     <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                         <EditIcon sx={{fontSize: '18px', marginRight: '10px', color: '#d71e28'}}/>
-                        {selectedNode && selectedNode.type == 'transponderNode' && 'Configure Transponder'}
+                        {selectedNode && selectedNode.type == 'modelNode' && 'Configure Model'}
                         {selectedNode && selectedNode.type == 'testsuiteNode' && 'Configure Testsuite'}
                         {selectedNode && selectedNode.type == 'dataNode' && 'Configure Data'}
                         {selectedNode && selectedNode.type == 'testcodeNode' && 'Configure Testcode'}
@@ -115,8 +115,8 @@ export default function Dialog({isOpen, selectedNode, sourceNodes, onClose, onUp
 
 
 function getConfig(type, section, metadata, onChangeMetadata, config, onChangeConfig){
-    if(type == 'transponderNode')
-        return <TransponderConfig section={section} metadata={metadata} onChangeMetadata={onChangeMetadata} config={config} onChangeConfig={onChangeConfig}/>
+    if(type == 'modelNode')
+        return <ModelNodeConfig section={section} metadata={metadata} onChangeMetadata={onChangeMetadata} config={config} onChangeConfig={onChangeConfig}/>
 
     if(type == 'dataNode')
         return <DataNodeConfig section={section} metadata={metadata} onChangeMetadata={onChangeMetadata} config={config} onChangeConfig={onChangeConfig}/>

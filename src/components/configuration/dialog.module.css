@@ -34,6 +34,22 @@
     margin: 6px 0px;
 }
 
+.inputContainerField {
+    border: 1px solid black;
+    padding: 6px; 
+    height: 35px; 
+    width: 60%; 
+    margin: 4px 6px; 
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row
+}
+
+.inputContainerField:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
 .draggableNode > span {
     align-content: center;
     justify-content: center;

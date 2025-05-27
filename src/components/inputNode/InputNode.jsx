@@ -1,5 +1,5 @@
 "use client"
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import style from './Inputnode.module.css';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -8,14 +8,26 @@ import Image from "next/image";
 export default function InputNode({nodeMeta}){
     const [expand, setExpand] = useState(false);
 
-    console.log("nodeMeta: ", nodeMeta);
+    useEffect(() => {
+        if(expand){
+            document.getElementById(`node-${nodeMeta.id}`).classList.remove(style.draggableNodeEffects);
+        }else{
+            document.getElementById(`node-${nodeMeta.id}`).classList.add(style.draggableNodeEffects);
+        }
+    }, [expand, nodeMeta]);
 
+    // console.log("nodeMeta: ", nodeMeta);
     var subComponent_map = {
-        transponderNode: [
+        modelNode: [
             { name: "SMMP URL", type: 'smmp_url', data: { subtype: "url", value: "smmp://url" }},
-            { name: "Model", type: 'model', data: { subtype: "model", value: "11615 Regression Model" }},
+            { name: "Model Object", type: 'model', data: { subtype: "model", value: "11615 Regression Model" }},
             { name: "Test Data", type: 'dataNode', data: { subtype: "test_data", value: "hdfs//:test_data_path" }},
             { name: "Train Data", type: 'dataNode', data: { subtype: "train_data", value: "hdfs//:train_data_path" }}
+        ],
+        testcodeNode: [
+            { name: "Metrics", type: 'metrics', data: { subtype: "url", value: "smmp://url" }},
+            { name: "Tables", type: 'tables', data: { subtype: "model", value: "11615 Regression Model" }},
+            { name: "Images", type: 'images', data: { subtype: "test_data", value: "hdfs//:test_data_path" }}
         ]
     }
 
@@ -24,7 +36,7 @@ export default function InputNode({nodeMeta}){
         subComponents = subComponent_map[nodeMeta.type]
 
     var components = {
-        transponderNode: {name: "Transponder Node", data: { value: "smmp://transponder_url", subtype: "Transponder" }},
+        modelNode: {name: "Model Node", data: { value: "smmp://transponder_url", subtype: "Transponder" }},
         dataNode: {name: "Data Node", data: { value: "hdfs://some_file_path", subtype: "testData" }},
         testsuiteNode: {name: "Test-Suite Node", data: { value: "Suite 12321", subtype: "testsuiteNode" }},
         testcodeNode: {name: "Test-Code Node", data: { value: "TestCode 123221", subtype: "testcodeNode" }},
@@ -33,6 +45,7 @@ export default function InputNode({nodeMeta}){
 
     return (
         <div 
+            id={`node-${nodeMeta.id}`}
             className={style.draggableNode} 
             onDragStart={(event) => { 
                 //event.preventDefault();
@@ -68,7 +81,7 @@ export default function InputNode({nodeMeta}){
             </div>
             { subComponents.length > 0 && expand &&
                 <div>
-                    {subComponents.map((component, idx) => 
+                    {subComponents.map((subComponent, idx) => 
                         <div 
                             key={idx} 
                             className={style.components} 
@@ -77,14 +90,14 @@ export default function InputNode({nodeMeta}){
                                 event.dataTransfer.effectAllowed = 'move';
                                 
                                 var componentNodeMeta = {...nodeMeta}
-                                componentNodeMeta.type = component.type;
-                                componentNodeMeta.data = component.data;
+                                componentNodeMeta.type = subComponent.type;
+                                componentNodeMeta.data = subComponent.data;
 
                                 event.dataTransfer.setData("meta", JSON.stringify(componentNodeMeta));
                             }}
                             draggable>
                             <div style={{flex: '1 1 10%'}}>
-                                {component.name}
+                                {subComponent.name}
                             </div>
                             <Image
                                 aria-hidden

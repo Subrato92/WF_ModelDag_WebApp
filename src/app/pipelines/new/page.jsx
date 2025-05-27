@@ -6,7 +6,7 @@ import { useEdgesState, useNodesState, addEdge, useReactFlow } from "@xyflow/rea
 import styles from './PageStyle.module.css';
 
 import '@xyflow/react/dist/style.css';
-import TransponderNode from '@/components/blocks/TransponderNode';
+import ModelNode from '@/components/blocks/ModelNode';
 import TestsuiteNode from "@/components/blocks/TestsuiteNode";
 import DataNode from "@/components/blocks/DataNode";
 import TestcodeNode from "@/components/blocks/TestcodeNode";
@@ -26,7 +26,7 @@ const initialEdges = [];
 const initialNodes = [];
 
 const nodeTypes = {
-    transponderNode: TransponderNode,
+    modelNode: ModelNode,
     testsuiteNode: TestsuiteNode,
     dataNode: DataNode,
     testcodeNode: TestcodeNode,

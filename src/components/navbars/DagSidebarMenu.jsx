@@ -58,10 +58,10 @@ export default function DagSidebarMenu() {
             </div>
             <div className={styles.toolbar}>
                 <div className={isOpen ? styles.item : styles.roundedItem} >
-                    <div className={styles.nodes} id="transponderNode" onDragStart={(e) => onDragStart(e)} draggable>
-                        <DeveloperBoardIcon sx={{fontSize: '24px', transform: 'rotate(180deg)'}}/> {isOpen && 'Transponder'}
+                    <div className={styles.nodes} id="modelNode" onDragStart={(e) => onDragStart(e)} draggable>
+                        <DeveloperBoardIcon sx={{fontSize: '24px', transform: 'rotate(180deg)'}}/> {isOpen && 'Model Node'}
                     </div>
-                    {!isOpen && <span className={styles.tooltip}>Transponder</span>}
+                    {!isOpen && <span className={styles.tooltip}>Model</span>}
                 </div>
                 <div className={isOpen ? styles.item : styles.roundedItem}>
                     <div className={styles.nodes} id="dataNode" onDragStart={(e) => onDragStart(e)} draggable>

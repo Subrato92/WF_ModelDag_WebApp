@@ -1,7 +1,7 @@
 "use client"
 import React, {useState, useCallback} from 'react';
 
-export default function TransponderConfig({section, metadata, onChangeMetadata, config, onChangeConfig}){
+export default function ModelNodeConfig({section, metadata, onChangeMetadata, config, onChangeConfig}){
 
     return (
         <React.Fragment>

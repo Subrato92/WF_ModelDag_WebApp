@@ -33,7 +33,7 @@ export default memo(({ data, isConnectable }) => {
                 <DeveloperBoardIcon className={iconStyleClass} sx={{fontSize: '60px', transform: 'rotate(180deg)'}}/> 
             </div>
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '14px', fontWeight: 'bold', marginTop: '3px'}}>
-                Transponder
+                Model Node
             </div>
             <div style={{fontSize: '10px', marginBottom: '5px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100px'}}>
                 smmp://some-end-point.com/some-path

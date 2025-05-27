@@ -4,6 +4,8 @@ import React, {useCallback, useState} from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 
+import style from './dialog.module.css';
+
 export default function TestCodeConfig({section, metadata, onChangeMetadata, config, onChangeConfig}){
     return (
         <React.Fragment>
@@ -49,9 +51,8 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
     ]
 
     var input_fields = [
-        { name: 'Transponder', id: 'transponder', type: 'transponderNode' },
         { name: 'SMMP Url', id: 'url', type: 'smmp_url' },
-        { name: 'Model', id: 'model', type: 'model' },
+        { name: 'Model', id: 'model', type: 'modelNode' },
         { name: 'Train Data', id: 'train_data', type: 'dataNode' },
         { name: 'Test Data', id: 'test_data', type: 'dataNode' },
     ]
@@ -81,23 +82,14 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
                 </select>
             </div>
             <div style={{display: 'flex', flexDirection: 'column', margin: '8px 4px'}}>
-                Arguments
+                Fill in the parameters
                 
                 <div style={{display: 'flex', flexDirection: 'column', margin: '4px 0px'}}>
                     {input_fields.map((input_field, idx) => <div key={idx} style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                         <span>{input_field.name}</span>
                         <div style={{flex: '1 1 10%'}}></div>
                         <div 
-                            style={{
-                                border: '1px solid black', 
-                                padding: '6px', 
-                                height: '35px', 
-                                width: '60%', 
-                                margin: '4px 6px', 
-                                borderRadius: '4px',
-                                display: 'flex',
-                                flexDirection: 'row'
-                            }}
+                            className={style.inputContainerField}
                             onDrop={(event) => {
                                 event.preventDefault();
                                 console.log("dropped Item: ", event.dataTransfer);
@@ -132,7 +124,7 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
                 </div>
             </div>
             <div style={{display: 'flex', flexDirection: 'column', margin: '8px 4px'}}>
-                Fill in the parameters
+                
                 <div style={{display: 'grid', gridTemplateColumns: 'auto auto', gap: '4px', margin: '4px 0px'}}>
                     {params.map((param, idx) => <input 
                             key={idx} 
