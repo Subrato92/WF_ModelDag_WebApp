@@ -39,7 +39,7 @@ export default function InputNode({nodeMeta}){
         modelNode: {name: "Model Node", data: { value: "smmp://transponder_url", subtype: "Transponder" }},
         dataNode: {name: "Data Node", data: { value: "hdfs://some_file_path", subtype: "testData" }},
         testsuiteNode: {name: "Test-Suite Node", data: { value: "Suite 12321", subtype: "testsuiteNode" }},
-        testcodeNode: {name: "Test-Code Node", data: { value: "TestCode 123221", subtype: "testcodeNode" }},
+        testcodeNode: {name: "Testcode Node", data: { value: "TestCode 123221", subtype: "testcodeNode" }},
         codeblockNode: {name: "CodeBlock Node", data: { value: "CodeBlock 12321", subtype: "codeblockNode" }},
     }
 

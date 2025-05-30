@@ -20,6 +20,8 @@ export default function Dialog({isOpen, selectedNode, sourceNodes, onClose, onUp
     const [nodeConfig, setNodeConfig] = useState(selectedNode && selectedNode.data.hasOwnProperty("config") ? selectedNode.data.config : {});
     console.log("Dialog Opened At:"+ openedAt);
 
+    console.log('nodeMetadata: ', nodeMetadata, 'nodeConfig: ', nodeConfig);
+
     useEffect(() => {
         setNodeMetadata(selectedNode && selectedNode.data.hasOwnProperty("metadata") ? selectedNode.data.metadata : {});
         setNodeConfig(selectedNode && selectedNode.data.hasOwnProperty("config") ? selectedNode.data.config : {});

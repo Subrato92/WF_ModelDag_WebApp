@@ -24,6 +24,7 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
         updatedMetadata[field_name] = value;
 
         onChangeMetadata(updatedMetadata)
+        console.log('updatedMetadata: ', updatedMetadata, 'metadata: ', metadata);
 
     }, [metadata, onChangeMetadata]);
 
@@ -36,25 +37,22 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
     }, [config, onChangeConfig]);
 
     var params = [
-        { name: 'handle_missing_values', type: 'text' },
-        { name: 'max_outlier', type: 'text' },
-        { name: 'num_decimals', type: 'text' },
-        { name: 'max_cats', type: 'text' },
-        { name: 'max_miss_pct', type: 'text' },
-        { name: 'min_cv', type: 'text' },
-        { name: 'p_val', type: 'text' },
-        { name: 'predictors', type: 'text' },
-        { name: 'correction', type: 'text' },
-        { name: 'outlier_datasets', type: 'text' },
-        { name: 'drift_datasets', type: 'text' },
-        { name: 'special_missing_codes', type: 'text' }
-    ]
-
-    var input_fields = [
         { name: 'SMMP Url', id: 'url', type: 'smmp_url' },
         { name: 'Model', id: 'model', type: 'modelNode' },
         { name: 'Train Data', id: 'train_data', type: 'dataNode' },
         { name: 'Test Data', id: 'test_data', type: 'dataNode' },
+        { name: 'Handle Missing Values', id: 'handle_missing_values', type: 'text' },
+        { name: 'Max Outlier', id: 'max_outlier', type: 'text' },
+        { name: 'Num Decimals', id: 'num_decimals', type: 'text' },
+        { name: 'Max Cats', id: 'max_cats', type: 'text' },
+        { name: 'Max Miss Pct', id: 'max_miss_pct', type: 'text' },
+        { name: 'Min CV', id: 'min_cv', type: 'text' },
+        { name: 'P Val', id: 'p_val', type: 'text' },
+        { name: 'Predictors', id: 'predictors', type: 'text' },
+        { name: 'Correction', id: 'correction', type: 'text' },
+        { name: 'Outlier Datasets', id: 'outlier_datasets', type: 'text' },
+        { name: 'Drift Datasets', id: 'drift_datasets', type: 'text' },
+        { name: 'Special Missing Codes', id: 'special_missing_codes', type: 'text' }
     ]
 
     return (
@@ -81,15 +79,17 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
                     <option value="11217">Code 11217</option>
                 </select>
             </div>
+
             <div style={{display: 'flex', flexDirection: 'column', margin: '8px 4px'}}>
                 Fill in the parameters
-                
-                <div style={{display: 'flex', flexDirection: 'column', margin: '4px 0px'}}>
-                    {input_fields.map((input_field, idx) => <div key={idx} style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                        <span>{input_field.name}</span>
-                        <div style={{flex: '1 1 10%'}}></div>
-                        <div 
+                <div style={{display: 'grid', gridTemplateColumns: 'auto auto', gap: '4px', margin: '4px 0px'}}>
+                    {params.map((input_field, idx) =>
+                        <input 
+                            key={idx} 
                             className={style.inputContainerField}
+                            placeholder={input_field.name}
+                            id={input_field.id+"_value"} 
+                            type="text"
                             onDrop={(event) => {
                                 event.preventDefault();
                                 console.log("dropped Item: ", event.dataTransfer);
@@ -100,40 +100,30 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
                                     setException("Required node type: "+ input_field.type+". Received "+ nodeMeta.type);
                                 }else{
                                     document.getElementById(input_field.id+"_value").value = nodeMeta.value;
+                                    /*
                                     var field_metaData = {};
                                     field_metaData.type = nodeMeta.type;
                                     field_metaData.data = nodeMeta.data;
+                                    
                                     console.log('setting field Meta: ', field_metaData);
-                                    updateMetadata("input_field_"+input_field.id, field_metaData);
+                                    */
+                                    var data = nodeMeta.data;
+                                    console.log('data: ', data);
+                                    if(metadata.hasOwnProperty("input_field_"+input_field.id)){
+                                        updateMetadata("input_field_"+input_field.id, metadata["input_field_"+input_field.id] + " " + data.value);
+                                    }else{
+                                        updateMetadata("input_field_"+input_field.id, data.value);
+                                    }
+                                    
                                 }
                             }}
                             onDragOver={(event)=> {
                                 event.preventDefault();
                                 event.dataTransfer.dropEffect = 'move';
                             }}
-                        >
-                            <div style={{ display: 'flex', flexDirection: 'column', width: '95%', height:'95%', overflowX: 'hidden', overflowY: 'scroll' }}>
-                                <input id={input_field.id+"_value"} value={getMetafieldValue(metadata, "input_field_"+input_field.id, "data.value")} readOnly></input>
-                            </div>
-                            {  getMetafieldValue(metadata, "input_field_"+input_field.id, "data.value").length > 1 &&
-                                <CloseIcon style={{float: 'right', color: 'var(--wf-red)', fontSize: '16px'}} onClick={(e) => updateMetadata("input_field_"+input_field.id, {})}/>
-                            }
-                        </div>
-                    </div>)}
-                    
-                </div>
-            </div>
-            <div style={{display: 'flex', flexDirection: 'column', margin: '8px 4px'}}>
-                
-                <div style={{display: 'grid', gridTemplateColumns: 'auto auto', gap: '4px', margin: '4px 0px'}}>
-                    {params.map((param, idx) => <input 
-                            key={idx} 
-                            placeholder={param.name} 
-                            type={param.type} 
-                            style={{ padding: '4px', border: '1px solid grey', borderRadius: '4px'}}
-                            onChange={(e) => updateConfig(param.name, e.target.value)}
-                            value={config.hasOwnProperty(param.name) ? config[param.name] : ""}
-                        />)}
+                            value={getMetafieldValue(metadata, "input_field_"+input_field.id, "")} 
+                            onChange={(e) => updateMetadata("input_field_"+input_field.id, e.target.value)}/>
+                    )}
                 </div>
             </div>
             <div style={{display: 'flex', flexDirection: 'column', margin: '8px 4px'}}>
@@ -158,11 +148,18 @@ export function Parameters({metadata, onChangeMetadata, config, onChangeConfig})
 
 const getMetafieldValue = (metadata, field_id, field_name) => {
 
-    if( metadata == null || metadata == undefined || field_name == undefined || field_name.trim().length==0 )
+    console.log('getMetafieldValue: ', metadata, field_id, field_name);
+
+    if( metadata == null || metadata == undefined || field_name == undefined)
         return "";
 
     var fieldMeta = metadata.hasOwnProperty(field_id) ? metadata[field_id] : {};
     var obj = fieldMeta;
+
+    console.log('fieldMeta: ', fieldMeta, 'field_id: ', field_id, 'field_name: ', field_name);
+
+    if(field_name.trim().length == 0)
+        return Object.keys(obj).length === 0 ? "" : obj;
 
     var fields = field_name.split(".");
     for(let i=0; i<fields.length; i++){

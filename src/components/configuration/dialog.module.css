@@ -35,14 +35,10 @@
 }
 
 .inputContainerField {
-    border: 1px solid black;
-    padding: 6px; 
-    height: 35px; 
-    width: 60%; 
-    margin: 4px 6px; 
+    border: 1px solid grey;
+    padding: 4px; 
+    width: 100%; 
     border-radius: 4px;
-    display: flex;
-    flex-direction: row
 }
 
 .inputContainerField:hover {
